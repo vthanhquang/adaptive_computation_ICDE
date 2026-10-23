@@ -1,0 +1,38 @@
+{
+ "q": 368,
+ "question": "What is the percentage of borderless cards?",
+ "sql_c0": "SELECT (COUNT(CASE WHEN \"bordercolor\" = 'borderless' THEN \"id\" END) * 100.0 / COUNT(\"id\")) AS percentage\nFROM \"cards\"",
+ "V_s0": 0.43682868332873365,
+ "params": {
+  "lam": 0.02,
+  "tau": null,
+  "voi_margin": 0.005
+ },
+ "options": [
+  {
+   "op": "VALUE_PROBE",
+   "voi": -0.005950047987984233,
+   "pred_ms": 175.1689659656757,
+   "actual_ms": 2005.4757001344115,
+   "price_units": 0.0035033793193135145
+  },
+  {
+   "op": "EXEC_BOUNDED",
+   "voi": -0.004374431357299461,
+   "pred_ms": 2957.6915936267974,
+   "actual_ms": 5123.888899805024,
+   "price_units": 0.05915383187253595
+  }
+ ],
+ "explain_cost": 830297.78,
+ "adaptive_trace": [
+  {
+   "action": "ACCEPT",
+   "V": 0.437
+  }
+ ],
+ "adaptive_db_ms": 1.0758000425994396,
+ "bundle_db_ms": 7130.440399982035,
+ "gated_db_ms": 7130.440399982035,
+ "correct": true
+}

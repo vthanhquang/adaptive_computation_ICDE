@@ -1,0 +1,5 @@
+﻿1.25 {'no_db': 0.598, 'fixed_bundle': 0.604, 'optimizer_gated': 0.604, 'adaptive': 0.604} best ext flash 0.592 gated-ext [1.2, 0.4, 2.2] adaptive-noDB [0.6, 0.0, 1.4]
+1.5 {'no_db': 0.602, 'fixed_bundle': 0.608, 'optimizer_gated': 0.61, 'adaptive': 0.61} best ext rule cascade (DB trigger) 0.612 gated-ext [-0.2, -2.0, 1.4] adaptive-noDB [0.8, 0.2, 1.6]
+2.0 {'no_db': 0.602, 'fixed_bundle': 0.61, 'optimizer_gated': 0.612, 'adaptive': 0.608} best ext rule cascade (DB trigger) 0.612 gated-ext [0.0, -1.8, 1.8] adaptive-noDB [0.6, -0.2, 1.4]
+3.0 {'no_db': 0.616, 'fixed_bundle': 0.616, 'optimizer_gated': 0.612, 'adaptive': 0.618} best ext rule cascade (DB trigger) 0.612 gated-ext [0.0, -1.8, 1.8] adaptive-noDB [0.2, -1.0, 1.4]
+4.0 {'no_db': 0.618, 'fixed_bundle': 0.616, 'optimizer_gated': 0.612, 'adaptive': 0.618} best ext agreement cascade (MoT) 0.643 gated-ext [-3.0, -5.8, -0.2] adaptive-noDB [0.0, -1.0, 1.0]

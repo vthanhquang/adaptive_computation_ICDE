@@ -1,0 +1,48 @@
+== sqlite: train 287  cal 287  test 300
+  states: 20472 (71/question)
+  A fitted on 58600 candidate-states
+  P fitted on 11442 decisive pairs
+  V fitted on 20472 states (selection accuracy 0.642)
+  Q fitted on 32315 state-actions
+  G fitted on 496000 evidence-action targets
+  planner fitted in 344s, checkpoint 591752f7e54ac698
+  ran 149 configs on cal in 2657s
+  ran 149 configs on test in 4399s
+
+== DB price 1 u/s   (cheap_only test acc 0.630)
+  1.25x no_db 0.630/3.04/7ms | fixed_bund 0.640/3.13/103ms | rule_selec 0.640/3.13/101ms | adaptive 0.630/3.04/7ms
+        adaptive - no_db +0.0 [+0.0,+0.0], fixed_bund -1.0 [-2.3,+0.0], rule_selec -1.0 [-2.3,+0.0]
+  1.50x no_db 0.630/3.83/8ms | fixed_bund 0.640/3.13/103ms | rule_selec 0.640/3.13/101ms | adaptive 0.630/3.86/21ms
+        adaptive - no_db +0.0 [+0.0,+0.0], fixed_bund -1.0 [-2.7,+0.7], rule_selec -1.0 [-2.7,+0.7]
+  2.00x no_db 0.650/5.29/9ms | fixed_bund 0.637/4.16/128ms | rule_selec 0.640/4.12/128ms | adaptive 0.653/5.29/14ms
+        adaptive - no_db +0.3 [+0.0,+1.0], fixed_bund +1.7 [-0.7,+4.0], rule_selec +1.3 [-1.0,+3.7]
+  3.00x no_db 0.673/7.92/10ms | fixed_bund 0.667/6.03/127ms | rule_selec 0.667/6.03/127ms | adaptive 0.677/7.96/23ms
+        adaptive - no_db +0.3 [+0.0,+1.0], fixed_bund +1.0 [-1.3,+3.0], rule_selec +1.0 [-1.3,+3.0]
+  4.00x no_db 0.673/7.92/10ms | fixed_bund 0.687/8.85/149ms | rule_selec 0.687/8.85/148ms | adaptive 0.677/7.96/23ms
+        adaptive - no_db +0.3 [+0.0,+1.0], fixed_bund -1.0 [-2.7,+0.7], rule_selec -1.0 [-2.7,+0.7]
+
+== DB price 30 u/s   (cheap_only test acc 0.630)
+  1.25x no_db 0.630/3.25/7ms | adaptive 0.630/3.25/7ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+  1.50x no_db 0.630/4.07/8ms | adaptive 0.630/4.21/12ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+  2.00x no_db 0.650/5.54/9ms | adaptive 0.650/5.56/9ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+  3.00x no_db 0.673/8.22/10ms | adaptive 0.673/8.23/10ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+  4.00x no_db 0.673/8.22/10ms | adaptive 0.673/8.23/10ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+
+== DB price 100 u/s   (cheap_only test acc 0.630)
+  1.25x no_db 0.630/3.77/7ms | adaptive 0.630/3.77/7ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+  1.50x no_db 0.630/4.66/8ms | adaptive 0.630/4.67/8ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+  2.00x no_db 0.650/6.14/9ms | adaptive 0.650/6.14/9ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+  3.00x no_db 0.673/8.95/10ms | adaptive 0.673/8.96/10ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+  4.00x no_db 0.673/8.95/10ms | adaptive 0.673/8.96/10ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+
+total 7402s

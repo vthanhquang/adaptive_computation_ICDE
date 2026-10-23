@@ -1,0 +1,54 @@
+{
+ "eval_dir": "eval_sqlite",
+ "scale": 0,
+ "pricing": {
+  "VALUE_PROBE": {
+   "n": 1200,
+   "spearman": 0.5024799965786161,
+   "auroc_gt100ms": 0.6772236251402918,
+   "share_gt100ms": 0.01,
+   "mae_log": 0.6774853598158094,
+   "mean_ms": 8.866638499506129,
+   "p95_ms": 24.65960996050853
+  },
+  "EXEC_BOUNDED": {
+   "n": 1200,
+   "spearman": 0.014615688499207415,
+   "auroc_gt100ms": 0.5054918068179365,
+   "share_gt100ms": 0.15166666666666667,
+   "mae_log": 1.521263909415368,
+   "mean_ms": 77.69731241632446,
+   "p95_ms": 363.63200998457603
+  }
+ },
+ "choices": {
+  "no_db": {
+   "vp_c0|literals": 0.0,
+   "vp_c0|no_literals": 0.0,
+   "ex_c0": 0.0,
+   "ex_new|>=2 cands": 0.0,
+   "probes_per_q": 0.0
+  },
+  "fixed_bundle": {
+   "vp_c0|literals": 1.0,
+   "vp_c0|no_literals": 1.0,
+   "ex_c0": 1.0,
+   "ex_new|>=2 cands": 1.0,
+   "probes_per_q": 2.6
+  },
+  "rule_selective": {
+   "vp_c0|literals": 1.0,
+   "vp_c0|no_literals": 0.031746031746031744,
+   "ex_c0": 0.9733333333333334,
+   "ex_new|>=2 cands": 1.0,
+   "probes_per_q": 2.283333333333333
+  },
+  "adaptive": {
+   "vp_c0|literals": 0.08438818565400844,
+   "vp_c0|no_literals": 0.07936507936507936,
+   "ex_c0": 0.04,
+   "ex_new|>=2 cands": 0.27419354838709675,
+   "probes_per_q": 0.27666666666666667
+  }
+ }
+}

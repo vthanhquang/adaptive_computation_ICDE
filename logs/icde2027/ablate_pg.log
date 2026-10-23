@@ -1,0 +1,6 @@
+﻿cal 3348s
+test 7004s
+  1.25x adaptive_noVP 0.606/12ms (full-adaptive_noVP: +0.6) | adaptive_noEX 0.610/7ms (full-adaptive_noEX: +0.2) | fixed_vp_only 0.604/8ms (full-fixed_vp_only: +0.8) | fixed_ex_only 0.596/21ms (full-fixed_ex_only: +1.6) | adaptive 0.612/12ms | fixed_bundle 0.604/27ms | optimizer_gated 0.604/10ms
+  1.5x adaptive_noVP 0.606/12ms (full-adaptive_noVP: +1.4) | adaptive_noEX 0.610/7ms (full-adaptive_noEX: +1.0) | fixed_vp_only 0.620/11ms (full-fixed_vp_only: +0.0) | fixed_ex_only 0.614/27ms (full-fixed_ex_only: +0.6) | adaptive 0.620/27ms | fixed_bundle 0.627/33ms | optimizer_gated 0.629/16ms
+  2.0x adaptive_noVP 0.606/12ms (full-adaptive_noVP: +1.4) | adaptive_noEX 0.610/7ms (full-adaptive_noEX: +1.0) | fixed_vp_only 0.620/11ms (full-fixed_vp_only: +0.0) | fixed_ex_only 0.622/35ms (full-fixed_ex_only: -0.2) | adaptive 0.620/27ms | fixed_bundle 0.627/33ms | optimizer_gated 0.633/20ms
+  3.0x adaptive_noVP 0.606/12ms (full-adaptive_noVP: +2.4) | adaptive_noEX 0.610/7ms (full-adaptive_noEX: +2.0) | fixed_vp_only 0.620/11ms (full-fixed_vp_only: +1.0) | fixed_ex_only 0.622/35ms (full-fixed_ex_only: +0.8) | adaptive 0.631/44ms | fixed_bundle 0.627/33ms | optimizer_gated 0.633/20ms

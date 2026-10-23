@@ -1,0 +1,43 @@
+﻿25/300 106s
+50/300 192s
+75/300 272s
+100/300 346s
+125/300 403s
+150/300 478s
+175/300 557s
+200/300 633s
+225/300 725s
+250/300 790s
+275/300 861s
+300/300 1016s
+loading DPO router ...
+python : Could not reach the Hub ([Errno 11002] getaddrinfo failed). Using cached commit hash for 
+'derrickzhu/EllieSQL_Router_Checkpoints'.
+At line:1 char:302
++ ... tch {} } }; python experiments/run_elliesql.py *> results/elliesql_ru ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Could not reach...r_Checkpoints'.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Could not reach the Hub ([Errno 11002] getaddrinfo failed). Using cached commit hash for 
+'derrickzhu/EllieSQL_Router_Checkpoints'.
+
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]
+Loading weights:   3%|▎         | 10/291 [00:00<00:06, 46.62it/s]
+Loading weights:   8%|▊         | 23/291 [00:00<00:04, 57.91it/s]
+Loading weights:  10%|▉         | 29/291 [00:00<00:04, 53.68it/s]
+Loading weights:  13%|█▎        | 37/291 [00:00<00:04, 54.12it/s]
+Loading weights:  15%|█▌        | 45/291 [00:00<00:04, 55.44it/s]
+Loading weights:  18%|█▊        | 51/291 [00:00<00:04, 53.74it/s]
+Loading weights:  21%|██        | 60/291 [00:01<00:03, 60.36it/s]
+Loading weights: 100%|██████████| 291/291 [00:01<00:00, 256.70it/s]
+
+EllieSQL on 300 BIRD dev questions (backbone deepseek-v4-flash)
+route distribution: {'G_A': 107, 'G_M': 34, 'G_B': 159}
+  policy                             EX   cost  tokens p95 lat s  LLM/q
+  EllieSQL G_B (always)           0.593   5.68   10532      38.0   2.00
+  EllieSQL G_M (always)           0.640   6.83   11722      44.6   2.01
+  EllieSQL G_A (always)           0.640   9.52   15801      65.3   3.02
+  EllieSQL (DPO router)           0.633   7.21   12610      56.8   2.37
+  EllieSQL (oracle router)        0.700   5.91   10820      41.8   2.04
+appended EllieSQL policies to results/baselines/published_methods_sqlite.json

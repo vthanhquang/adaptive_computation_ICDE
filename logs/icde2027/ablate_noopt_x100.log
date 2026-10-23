@@ -1,0 +1,13 @@
+﻿== pg: train 417  cal 417  test 498
+  planner fitted in 0s, checkpoint 988393cff75d3a5a
+  ran 85 configs on cal in 1950s
+  ran 85 configs on test in 1963s
+
+== DB price 1 u/s   (cheap_only test acc 0.592)
+  1.25x adaptive 0.600/3.06/104ms
+  1.50x adaptive 0.604/3.55/332ms
+  2.00x adaptive 0.610/4.61/661ms
+  3.00x adaptive 0.610/4.61/661ms
+  4.00x adaptive 0.627/8.87/1339ms
+
+total 3913s

@@ -1,0 +1,31 @@
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+ & & \multicolumn{2}{c}{1.5$\times$} & \multicolumn{2}{c}{2.0$\times$} & \multicolumn{2}{c}{3.0$\times$} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}
+Setting & Policy & EX & DB ms & EX & DB ms & EX & DB ms \\
+\midrule
+\multirow{5}{*}{\shortstack[l]{PostgreSQL, 1$\times$\\($n{=}498$)}} & No DB evidence & 0.604 & 4 & 0.604 & 4 & 0.604 & 4 \\
+ & Fixed bundle & 0.627 & 33 & 0.627 & 33 & 0.627 & 33 \\
+ & Optimizer-gated & 0.629 & 16 & 0.633 & 20 & 0.633 & 20 \\
+ & Rule-selective & 0.624 & 32 & 0.624 & 32 & 0.624 & 32 \\
+ & \textbf{Adaptive (VOI)} & 0.620 & 27 & 0.620 & 27 & 0.631 & 44 \\
+\midrule
+\multirow{5}{*}{\shortstack[l]{PostgreSQL, 10$\times$ costs\\($n{=}498$)}} & No DB evidence & 0.600 & 6 & 0.600 & 6 & 0.600 & 6 \\
+ & Fixed bundle & 0.612 & 357 & 0.612 & 357 & 0.612 & 357 \\
+ & Optimizer-gated & 0.612 & 235 & 0.612 & 235 & 0.612 & 235 \\
+ & Rule-selective & 0.612 & 354 & 0.620 & 396 & 0.620 & 396 \\
+ & \textbf{Adaptive (VOI)} & 0.618 & 205 & 0.618 & 205 & 0.618 & 205 \\
+\midrule
+\multirow{5}{*}{\shortstack[l]{PostgreSQL, 100$\times$ costs\\($n{=}498$)}} & No DB evidence & 0.596 & 18 & 0.606 & 21 & 0.606 & 21 \\
+ & Fixed bundle & -- & -- & 0.600 & 1668 & 0.616 & 2410 \\
+ & Optimizer-gated & 0.600 & 788 & 0.608 & 377 & 0.616 & 451 \\
+ & Rule-selective & -- & -- & 0.602 & 1636 & 0.618 & 2356 \\
+ & \textbf{Adaptive (VOI)} & 0.598 & 89 & 0.614 & 335 & 0.614 & 335 \\
+\midrule
+\multirow{5}{*}{\shortstack[l]{SQLite\\($n{=}300$)}} & No DB evidence & 0.630 & 8 & 0.650 & 9 & 0.673 & 10 \\
+ & Fixed bundle & 0.640 & 103 & 0.637 & 128 & 0.667 & 127 \\
+ & Optimizer-gated & -- & -- & -- & -- & -- & -- \\
+ & Rule-selective & 0.640 & 101 & 0.640 & 128 & 0.667 & 127 \\
+ & \textbf{Adaptive (VOI)} & 0.630 & 21 & 0.653 & 14 & 0.677 & 23 \\
+\bottomrule
+\end{tabular}

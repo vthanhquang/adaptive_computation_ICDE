@@ -1,0 +1,148 @@
+﻿training planner variant=full selector=pairwise ...
+training planner variant=full selector=pointwise ...
+training planner variant=exec_only selector=pairwise ...
+training planner variant=nodb selector=pairwise ...
+
+== CROSS-FITTED PLANNER (n=500); cost = token-weighted units incl. DB; latency in seconds
+  policy                                          acc   cost    lat  p95lat  LLM/q  setting
+  fixed flash                                   0.592   2.90    5.5    12.3   1.00  
+  fixed pro                                     0.600   5.69    5.0    14.5   1.00  
+  fixed qwen                                    0.640   9.64    9.5    22.7   1.00  
+  one-shot router                               0.592   2.99    5.5    12.6   1.00  lam=0.100
+  one-shot router                               0.596   3.08    5.6    12.6   1.00  lam=0.075
+  one-shot router                               0.602   3.34    5.8    13.2   1.00  lam=0.055
+  one-shot router                               0.608   3.92    6.6    15.2   1.00  lam=0.035
+  one-shot router                               0.614   5.21    7.4    18.3   1.00  lam=0.015
+  one-shot router                               0.632   6.97    8.3    20.7   1.00  lam=0.000
+  rule cascade (DB trigger->qwen)               0.612   3.69    7.1    17.1   1.08  
+  agreement cascade (MoT-style)                 0.642   8.94   11.2    26.7   2.30  
+  self-consistency@2 (flash)                    0.602   5.81    7.7    16.2   2.00  
+  ensemble@4 exec-vote                          0.634  21.16   12.4    29.6   4.00  
+  ensemble@3 models exec-vote                   0.630  18.27   11.5    29.1   3.00  
+  [paper] AutoMix                               0.602  12.72   19.9    42.9   4.06  AutoMix (theta=0.30)
+  [paper] AutoMix                               0.614  13.68   21.9    49.6   4.15  AutoMix (theta=0.60)
+  [paper] AutoMix                               0.632  14.99   23.4    54.1   4.28  AutoMix (theta=0.90)
+  [paper] CHASE-SQL selection (flash, pro, qwen)  0.620  21.46   14.9    43.3   3.51  CHASE-SQL selection (flash, pro, qwen)
+  [paper] CHASE-SQL selection (flash x2, pro, qwen)  0.624  26.02   16.6    46.5   4.79  CHASE-SQL selection (flash x2, pro, qwen)
+  [paper] AutoMix few-shot                      0.598  13.64   20.8    47.0   4.04  AutoMix few-shot (theta=0.30)
+  [paper] AutoMix few-shot                      0.616  14.43   22.4    49.3   4.11  AutoMix few-shot (theta=0.60)
+  [paper] AutoMix few-shot                      0.634  16.39   24.8    55.2   4.30  AutoMix few-shot (theta=0.90)
+  [paper] CHASE-SQL selection few-shot (flash, pro, qwen)  0.620  21.79   15.0    42.7   3.51  CHASE-SQL selection few-shot (flash, pro, qwen)
+  [paper] CHASE-SQL selection few-shot (flash x2, pro, qwen)  0.628  26.66   16.9    45.1   4.79  CHASE-SQL selection few-shot (flash x2, pro, qwen)
+  PlanGate-full                                 0.606   2.94    5.7    12.4   1.01  lam=0.25
+  PlanGate-full                                 0.608   2.96    5.8    12.9   1.02  lam=0.15
+  PlanGate-full                                 0.618   3.38    6.7    17.9   1.16  lam=0.05
+  PlanGate-full                                 0.630   4.55    8.9    24.8   1.53  lam=0.02
+  PlanGate-full                                 0.640   5.86   11.2    29.2   1.89  lam=0.01
+  PlanGate-full                                 0.648   8.12   14.0    34.9   2.44  lam=0.002
+  PlanGate-full 2-phase                         0.626   3.92    7.8    19.8   1.13  lam=0.1,tau=0.20
+  PlanGate-full 2-phase                         0.636   4.69    8.5    22.0   1.18  lam=0.25,tau=0.30
+  PlanGate-full 2-phase                         0.648   5.68   10.9    29.5   1.61  lam=0.02,tau=0.30
+  PlanGate-full 2-phase                         0.660   6.57   10.9    31.4   1.47  lam=0.05,tau=0.50
+  PlanGate-full 2-phase                         0.668   8.31   11.7    27.4   1.54  lam=0.25,tau=0.70
+  PlanGate-full 2-phase                         0.676  11.09   14.6    32.3   1.94  lam=0.05,tau=0.85
+  PlanGate-full (latency-aware)                 0.626   3.90    6.2    13.7   1.22  lat_w=0.04
+  PlanGate-full (latency-aware)                 0.640   5.08    7.0    16.7   1.48  lat_w=0.02
+  PlanGate-full (latency-aware)                 0.650   6.63    8.4    21.1   1.83  lat_w=0.01
+  PlanGate-full (pointwise select)              0.604   2.93    5.6    12.4   1.00  lam=0.25
+  PlanGate-full (pointwise select)              0.610   2.96    5.7    12.7   1.02  lam=0.15
+  PlanGate-full (pointwise select)              0.614   3.04    5.9    14.5   1.05  lam=0.1
+  PlanGate-full (pointwise select)              0.626   3.86    8.0    21.6   1.33  lam=0.03
+  PlanGate-full (pointwise select)              0.634   4.54    9.1    25.4   1.53  lam=0.02
+  PlanGate-full (pointwise select)              0.640   6.93   12.9    39.0   2.13  lam=0.005
+  PlanGate-exec_only                            0.592   2.91    5.6    12.3   1.00  lam=0.25
+  PlanGate-exec_only                            0.598   2.99    5.8    13.3   1.03  lam=0.1
+  PlanGate-exec_only                            0.604   3.28    6.4    16.8   1.14  lam=0.05
+  PlanGate-exec_only                            0.612   3.86    7.1    18.3   1.30  lam=0.03
+  PlanGate-exec_only                            0.626   5.53    9.6    25.4   1.65  lam=0.015
+  PlanGate-exec_only                            0.650   8.72   13.1    34.7   2.17  lam=0.005
+  PlanGate-exec_only 2-phase                    0.610   4.01    7.8    20.7   1.13  lam=0.1,tau=0.20
+  PlanGate-exec_only 2-phase                    0.620   4.50    8.4    22.3   1.18  lam=0.1,tau=0.30
+  PlanGate-exec_only 2-phase                    0.630   5.41   10.1    24.6   1.54  lam=0.02,tau=0.25
+  PlanGate-exec_only 2-phase                    0.644   6.39   10.1    26.0   1.35  lam=0.25,tau=0.55
+  PlanGate-exec_only 2-phase                    0.660   8.84   12.1    26.9   1.60  lam=0.25,tau=0.70
+  PlanGate-exec_only 2-phase                    0.674  11.47   15.4    35.0   2.15  lam=0.02,tau=0.80
+  PlanGate-nodb                                 0.592   2.90    5.5    12.3   1.00  lam=0.25
+  PlanGate-nodb                                 0.596   2.98    5.8    12.9   1.04  lam=0.07
+  PlanGate-nodb                                 0.602   3.11    6.1    15.1   1.10  lam=0.05
+  PlanGate-nodb                                 0.606   6.87   11.2    30.1   1.93  lam=0.01
+  PlanGate-nodb                                 0.618   9.21   13.7    34.4   2.25  lam=0.005
+  PlanGate-nodb                                 0.636  13.62   18.1    41.7   2.70  lam=0.0
+  PlanGate-nodb 2-phase                         0.600   3.61    7.2    16.9   1.08  lam=0.1,tau=0.20
+  PlanGate-nodb 2-phase                         0.610   4.02    8.0    19.7   1.18  lam=0.05,tau=0.25
+  PlanGate-nodb 2-phase                         0.618   5.09    8.9    22.6   1.22  lam=0.1,tau=0.40
+  PlanGate-nodb 2-phase                         0.636   6.32    9.9    23.1   1.33  lam=0.25,tau=0.50
+  PlanGate-nodb 2-phase                         0.652  10.33   13.2    28.2   1.75  lam=0.25,tau=0.75
+  PlanGate-nodb 2-phase                         0.656  11.51   14.1    28.9   1.88  lam=0.25,tau=0.85
+  confidence cascade, replace (AutoMix-like)    0.606   3.47    7.0    16.1   1.06  tau=0.10
+  confidence cascade, replace (AutoMix-like)    0.614   3.95    7.6    19.9   1.10  tau=0.20
+  confidence cascade, replace (AutoMix-like)    0.618   4.43    8.1    20.9   1.15  tau=0.30
+  confidence cascade, replace (AutoMix-like)    0.628   5.82    9.5    23.8   1.28  tau=0.50
+  confidence cascade, replace (AutoMix-like)    0.640   7.28   11.0    27.4   1.43  tau=0.60
+  confidence cascade, replace (AutoMix-like)    0.656  10.18   13.3    29.1   1.72  tau=0.75
+  confidence cascade, verified select           0.606   3.47    7.0    16.1   1.06  tau=0.10
+  confidence cascade, verified select           0.614   3.95    7.6    19.9   1.10  tau=0.20
+  confidence cascade, verified select           0.620   4.66    8.3    22.0   1.17  tau=0.35
+  confidence cascade, verified select           0.630   5.42    9.1    23.3   1.24  tau=0.45
+  confidence cascade, verified select           0.650   7.28   11.0    27.4   1.43  tau=0.60
+  confidence cascade, verified select           0.668  10.18   13.3    29.1   1.72  tau=0.75
+  oracle (1 action)                             0.750   3.70    7.2    15.9   1.16  
+
+== Matched COST budget: PlanGate-full (best policy family) vs best external baseline
+  budget 1.25x ( 3.62): PlanGate-full 0.622 (cost 3.62) | best baseline 0.604 [one-shot router] | PlanGate-nodb 0.602 | diff +0.018 CI[+0.000,+0.036]
+  budget 1.50x ( 4.34): PlanGate-full 0.628 (cost 4.10) | best baseline 0.612 [rule cascade (DB trigger->qwen)] | PlanGate-nodb 0.610 | diff +0.016 CI[+0.002,+0.032]
+  budget 2.00x ( 5.79): PlanGate-full 0.648 (cost 5.68) | best baseline 0.618 [one-shot router] | PlanGate-nodb 0.624 | diff +0.030 CI[+0.004,+0.056]
+  budget 3.00x ( 8.69): PlanGate-full 0.670 (cost 8.61) | best baseline 0.632 [one-shot router] | PlanGate-nodb 0.650 | diff +0.038 CI[+0.012,+0.064]
+  budget 4.00x (11.58): PlanGate-full 0.676 (cost 11.09) | best baseline 0.642 [agreement cascade (MoT-style)] | PlanGate-nodb 0.656 | diff +0.034 CI[+0.010,+0.058]
+
+== Head-to-head vs published methods (PlanGate point with cost <= method cost; paired bootstrap)
+  AutoMix (theta=0.30)               acc=0.602 cost=12.72 | PlanGate 0.676 @ 11.09 | diff +0.074 CI[+0.044,+0.104]
+  AutoMix (theta=0.60)               acc=0.614 cost=13.68 | PlanGate 0.676 @ 11.09 | diff +0.062 CI[+0.034,+0.092]
+  AutoMix (theta=0.90)               acc=0.632 cost=14.99 | PlanGate 0.676 @ 11.09 | diff +0.044 CI[+0.016,+0.072]
+  CHASE-SQL selection (flash, pro, qwen) acc=0.620 cost=21.46 | PlanGate 0.676 @ 11.09 | diff +0.056 CI[+0.026,+0.086]
+  CHASE-SQL selection (flash x2, pro, qwen) acc=0.624 cost=26.02 | PlanGate 0.676 @ 11.09 | diff +0.052 CI[+0.022,+0.082]
+  AutoMix few-shot (theta=0.30)      acc=0.598 cost=13.64 | PlanGate 0.676 @ 11.09 | diff +0.078 CI[+0.048,+0.108]
+  AutoMix few-shot (theta=0.60)      acc=0.616 cost=14.43 | PlanGate 0.676 @ 11.09 | diff +0.060 CI[+0.034,+0.088]
+  AutoMix few-shot (theta=0.90)      acc=0.634 cost=16.39 | PlanGate 0.676 @ 11.09 | diff +0.042 CI[+0.016,+0.068]
+  CHASE-SQL selection few-shot (flash, pro, qwen) acc=0.620 cost=21.79 | PlanGate 0.676 @ 11.09 | diff +0.056 CI[+0.026,+0.086]
+  CHASE-SQL selection few-shot (flash x2, pro, qwen) acc=0.628 cost=26.66 | PlanGate 0.676 @ 11.09 | diff +0.048 CI[+0.016,+0.080]
+
+== Split-half validation (operating point chosen on one half, scored on the other; averaged)
+  budget 1.25x: PlanGate-full 0.618 (cost 3.50) | PlanGate-nodb 0.602 (cost 3.11) | best external baseline 0.602 (cost 3.37) | full - best-baseline +0.016 CI[-0.002,+0.034]
+  budget 1.50x: PlanGate-full 0.624 (cost 4.32) | PlanGate-nodb 0.606 (cost 3.88) | best external baseline 0.604 (cost 3.74) | full - best-baseline +0.020 CI[+0.000,+0.040]
+  budget 2.00x: PlanGate-full 0.632 (cost 5.87) | PlanGate-nodb 0.622 (cost 5.50) | best external baseline 0.612 (cost 4.60) | full - best-baseline +0.020 CI[-0.006,+0.046]
+  budget 3.00x: PlanGate-full 0.662 (cost 7.82) | PlanGate-nodb 0.640 (cost 7.57) | best external baseline 0.620 (cost 6.55) | full - best-baseline +0.042 CI[+0.016,+0.066]
+
+== Cost / latency PlanGate-full needs to match each baseline's accuracy
+  fixed qwen                       acc=0.640 cost= 9.64 p95= 22.7s  ->  PlanGate cost  5.08 (-47%), p95  16.7s (-27%)
+  self-consistency@2 (flash)       acc=0.602 cost= 5.81 p95= 16.2s  ->  PlanGate cost  2.94 (-49%), p95  12.4s (-23%)
+  ensemble@4 exec-vote             acc=0.634 cost=21.16 p95= 29.6s  ->  PlanGate cost  4.69 (-78%), p95  16.7s (-44%)
+  ensemble@3 models exec-vote      acc=0.630 cost=18.27 p95= 29.1s  ->  PlanGate cost  4.40 (-76%), p95  16.7s (-43%)
+  agreement cascade (MoT-style)    acc=0.642 cost= 8.94 p95= 26.7s  ->  PlanGate cost  5.29 (-41%), p95  21.1s (-21%)
+  rule cascade (DB trigger->qwen)  acc=0.612 cost= 3.69 p95= 17.1s  ->  PlanGate cost  3.13 (-15%), p95  13.7s (-20%)
+  AutoMix (theta=0.30)             acc=0.602 cost=12.72 p95= 42.9s  ->  PlanGate cost  2.94 (-77%), p95  12.4s (-71%)
+  AutoMix (theta=0.60)             acc=0.614 cost=13.68 p95= 49.6s  ->  PlanGate cost  3.38 (-75%), p95  13.7s (-72%)
+  AutoMix (theta=0.90)             acc=0.632 cost=14.99 p95= 54.1s  ->  PlanGate cost  4.69 (-69%), p95  16.7s (-69%)
+  CHASE-SQL selection (flash, pro, qwen) acc=0.620 cost=21.46 p95= 43.3s  ->  PlanGate cost  3.62 (-83%), p95  13.7s (-68%)
+  CHASE-SQL selection (flash x2, pro, qwen) acc=0.624 cost=26.02 p95= 46.5s  ->  PlanGate cost  3.90 (-85%), p95  13.7s (-71%)
+  AutoMix few-shot (theta=0.30)    acc=0.598 cost=13.64 p95= 47.0s  ->  PlanGate cost  2.94 (-78%), p95  12.4s (-74%)
+  AutoMix few-shot (theta=0.60)    acc=0.616 cost=14.43 p95= 49.3s  ->  PlanGate cost  3.38 (-77%), p95  13.7s (-72%)
+  AutoMix few-shot (theta=0.90)    acc=0.634 cost=16.39 p95= 55.2s  ->  PlanGate cost  4.69 (-71%), p95  16.7s (-70%)
+  CHASE-SQL selection few-shot (flash, pro, qwen) acc=0.620 cost=21.79 p95= 42.7s  ->  PlanGate cost  3.62 (-83%), p95  13.7s (-68%)
+  CHASE-SQL selection few-shot (flash x2, pro, qwen) acc=0.628 cost=26.66 p95= 45.1s  ->  PlanGate cost  4.10 (-85%), p95  16.7s (-63%)
+
+== Plan diversity, PlanGate-full lam=0.02 (11 distinct plans)
+   339  acc=0.67  ACCEPT
+    48  acc=0.58  RESAMPLE_1
+    29  acc=0.41  REPAIR_DB
+    24  acc=0.62  RESAMPLE_1->REPAIR_DB
+    21  acc=0.52  REPAIR_DB->RESAMPLE_1
+    20  acc=0.40  RESAMPLE_1->REPAIR_DB->SWITCH_PRO
+    11  acc=0.64  REPAIR_DB->RESAMPLE_1->SWITCH_PRO
+     5  acc=0.80  VALUE_FIX
+     1  acc=1.00  SWITCH_PRO->REPAIR_DB
+     1  acc=1.00  VALUE_FIX->REPAIR_DB->RESAMPLE_1
+     1  acc=0.00  RESAMPLE_1->SWITCH_PRO->REPAIR_DB
+  first action | DB-flagged: RESAMPLE_1=18, REPAIR_DB=14, VALUE_FIX=6, ACCEPT=2
+  first action | unflagged : ACCEPT=337, RESAMPLE_1=75, REPAIR_DB=47, SWITCH_PRO=1
+saved results/crossfit/planner_frontier_pg.png

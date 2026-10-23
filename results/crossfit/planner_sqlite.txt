@@ -1,0 +1,192 @@
+﻿training planner variant=full selector=pairwise ...
+training planner variant=full selector=pointwise ...
+training planner variant=exec_only selector=pairwise ...
+training planner variant=nodb selector=pairwise ...
+
+== CROSS-FITTED PLANNER (n=300); cost = token-weighted units incl. DB; latency in seconds
+  policy                                          acc   cost    lat  p95lat  LLM/q  setting
+  fixed flash                                   0.630   3.03    8.2    32.5   1.00  
+  fixed pro                                     0.603   5.67    6.5    29.0   1.00  
+  fixed qwen                                    0.673   9.74   10.1    30.0   1.00  
+  fixed glm_direct                              0.600   5.95    6.7    22.1   1.00  
+  fixed pro_decompose                           0.610   6.52    7.6    20.0   1.00  
+  fixed kimi_decompose                          0.587  13.66   10.0    20.4   1.00  
+  one-shot router                               0.627   3.21    8.1    32.7   1.00  lam=0.100
+  one-shot router                               0.630   3.37    8.4    32.9   1.00  lam=0.055
+  one-shot router                               0.633   4.47    8.7    32.8   1.00  lam=0.020
+  one-shot router                               0.640   4.85    8.7    32.7   1.00  lam=0.015
+  rule cascade (DB trigger->qwen)               0.647   3.96    9.4    32.9   1.08  
+  agreement cascade (MoT-style)                 0.670   9.08   15.0    44.5   2.28  
+  self-consistency@3 (flash)                    0.640   9.18   11.9    35.3   3.00  
+  self-consistency@2 (flash)                    0.630   6.14   10.7    34.0   2.00  
+  ensemble@5 exec-vote                          0.657  24.76   17.1    39.6   5.00  
+  ensemble@4 exec-vote                          0.663  21.72   16.5    39.0   4.00  
+  ensemble@3 models exec-vote                   0.657  18.70   15.4    38.8   3.00  
+  [paper] AutoMix                               0.647  12.91   20.6    48.1   4.04  AutoMix (theta=0.30)
+  [paper] AutoMix                               0.650  13.76   22.2    56.2   4.11  AutoMix (theta=0.60)
+  [paper] AutoMix                               0.667  15.11   24.0    62.6   4.24  AutoMix (theta=0.90)
+  [paper] CHASE-SQL selection (flash, pro, qwen)  0.637  21.42   17.7    44.5   3.44  CHASE-SQL selection (flash, pro, qwen)
+  [paper] CHASE-SQL selection (flash x2, pro, qwen)  0.637  25.57   19.8    54.0   4.62  CHASE-SQL selection (flash x2, pro, qwen)
+  [paper] EllieSQL G_B (always)                 0.593   5.68   13.1    38.0   2.00  EllieSQL G_B (always)
+  [paper] EllieSQL G_M (always)                 0.640   6.83   18.7    44.6   2.01  EllieSQL G_M (always)
+  [paper] EllieSQL G_A (always)                 0.640   9.52   31.0    65.3   3.02  EllieSQL G_A (always)
+  [paper] EllieSQL (DPO router)                 0.633   7.21   22.5    56.8   2.37  EllieSQL (DPO router)
+  [paper] SQLens (flash)                        0.643   9.43   27.4    72.8   2.43  SQLens (flash)
+  [paper] SQLens (pro)                          0.633  13.22   22.9    59.8   2.35  SQLens (pro)
+  [paper] EllieSQL (in-domain router)           0.630   6.22   17.6    49.3   2.12  EllieSQL (in-domain router, t=0.3)
+  [paper] EllieSQL (in-domain router)           0.637   6.42   18.9    53.2   2.16  EllieSQL (in-domain router)
+  [paper] EllieSQL (in-domain router)           0.643   6.99   21.9    54.8   2.30  EllieSQL (in-domain router, t=0.7)
+  [paper] EllieSQL (in-domain router)           0.650   7.92   25.7    56.7   2.53  EllieSQL (in-domain router, t=0.9)
+  [paper] DIN-SQL                               0.537  20.96   52.5   178.4   4.00  DIN-SQL
+  [paper] MAC-SQL                               0.660   6.63   25.2    56.1   1.94  MAC-SQL
+  [paper] AutoMix few-shot                      0.643  13.88   23.0    53.9   4.03  AutoMix few-shot (theta=0.30)
+  [paper] AutoMix few-shot                      0.653  14.90   24.5    57.6   4.12  AutoMix few-shot (theta=0.60)
+  [paper] AutoMix few-shot                      0.673  16.44   26.4    60.7   4.27  AutoMix few-shot (theta=0.90)
+  [paper] CHASE-SQL selection few-shot (flash, pro, qwen)  0.633  21.74   18.4    45.4   3.44  CHASE-SQL selection few-shot (flash, pro, qwen)
+  [paper] CHASE-SQL selection few-shot (flash x2, pro, qwen)  0.643  26.03   20.7    50.0   4.62  CHASE-SQL selection few-shot (flash x2, pro, qwen)
+  [paper] SQLens separate-prompts (flash)       0.637  23.02   31.1    72.1   2.60  SQLens separate-prompts (flash)
+  [paper] SQLens separate-prompts (pro)         0.627  37.83   32.4    79.0   2.54  SQLens separate-prompts (pro)
+  PlanGate-full                                 0.640   3.13    8.3    32.5   1.00  lam=0.25
+  PlanGate-full                                 0.643   3.23    8.5    32.7   1.04  lam=0.15
+  PlanGate-full                                 0.650   3.32    8.7    32.7   1.07  lam=0.1
+  PlanGate-full                                 0.657   3.46    9.0    32.9   1.12  lam=0.07
+  PlanGate-full                                 0.660   3.66    9.7    35.8   1.18  lam=0.05
+  PlanGate-full                                 0.667   3.83   10.0    35.9   1.24  lam=0.04
+  PlanGate-full 2-phase                         0.667   3.88    9.4    34.1   1.11  lam=0.1,tau=0.20
+  PlanGate-full 2-phase                         0.670   4.06    9.9    34.1   1.19  lam=0.05,tau=0.20
+  PlanGate-full 2-phase                         0.673   8.40   14.9    44.5   1.55  lam=0.1,tau=0.70
+  PlanGate-full 2-phase                         0.680   9.52   15.7    45.3   1.66  lam=0.1,tau=0.75
+  PlanGate-full (latency-aware)                 0.647   3.92    9.0    32.9   1.21  lat_w=0.04
+  PlanGate-full (latency-aware)                 0.653   4.99    9.9    35.3   1.44  lat_w=0.02
+  PlanGate-full (latency-aware)                 0.657   6.82   11.5    35.6   1.87  lat_w=0.005
+  PlanGate-full (latency-aware)                 0.660   7.87   12.8    35.9   2.11  lat_w=0.002
+  PlanGate-full (pointwise select)              0.640   3.15    8.3    32.5   1.01  lam=0.25
+  PlanGate-full (pointwise select)              0.653   3.38    8.9    32.7   1.08  lam=0.1
+  PlanGate-exec_only                            0.633   3.12    8.3    32.5   1.00  lam=0.25
+  PlanGate-exec_only                            0.637   3.17    8.4    32.5   1.02  lam=0.15
+  PlanGate-exec_only                            0.640   3.49    9.0    32.9   1.14  lam=0.05
+  PlanGate-exec_only                            0.650   4.92   11.9    38.4   1.63  lam=0.015
+  PlanGate-exec_only                            0.653   5.42   12.7    39.0   1.79  lam=0.01
+  PlanGate-exec_only                            0.663   8.02   17.0    43.9   2.47  lam=0.0
+  PlanGate-exec_only 2-phase                    0.657   4.11    9.5    33.9   1.09  lam=0.25,tau=0.20
+  PlanGate-exec_only 2-phase                    0.660   4.13    9.6    34.0   1.12  lam=0.1,tau=0.20
+  PlanGate-exec_only 2-phase                    0.667   5.02   11.4    35.9   1.47  lam=0.02,tau=0.20
+  PlanGate-exec_only 2-phase                    0.670   6.05   12.9    41.3   1.58  lam=0.02,tau=0.40
+  PlanGate-exec_only 2-phase                    0.677   9.94   17.2    45.7   1.95  lam=0.02,tau=0.75
+  PlanGate-exec_only 2-phase                    0.683  11.66   17.7    45.4   1.88  lam=0.1,tau=0.90
+  PlanGate-nodb                                 0.630   3.03    8.2    32.5   1.00  lam=0.25
+  PlanGate-nodb                                 0.633   3.45    9.3    35.3   1.17  lam=0.05
+  PlanGate-nodb                                 0.637   4.64   11.2    37.5   1.58  lam=0.02
+  PlanGate-nodb                                 0.643   5.03   11.9    37.5   1.72  lam=0.015
+  PlanGate-nodb                                 0.647   7.72   16.7    42.7   2.50  lam=0.0
+  PlanGate-nodb 2-phase                         0.637   3.56    8.9    33.5   1.05  lam=0.25,tau=0.20
+  PlanGate-nodb 2-phase                         0.640   3.86    9.8    35.4   1.18  lam=0.05,tau=0.20
+  PlanGate-nodb 2-phase                         0.650   4.52   10.2    36.2   1.14  lam=0.25,tau=0.35
+  PlanGate-nodb 2-phase                         0.653   4.82   11.1    38.7   1.28  lam=0.05,tau=0.35
+  PlanGate-nodb 2-phase                         0.660   8.82   15.9    45.3   1.91  lam=0.02,tau=0.60
+  PlanGate-nodb 2-phase                         0.667  13.06   19.8    50.1   2.35  lam=0.02,tau=0.90
+  confidence cascade, replace (AutoMix-like)    0.647   3.86    9.2    33.5   1.07  tau=0.10
+  confidence cascade, replace (AutoMix-like)    0.650   4.10    9.5    33.9   1.09  tau=0.20
+  confidence cascade, replace (AutoMix-like)    0.653   4.33    9.8    35.1   1.11  tau=0.25
+  confidence cascade, replace (AutoMix-like)    0.660   6.36   12.3    39.7   1.31  tau=0.50
+  confidence cascade, replace (AutoMix-like)    0.663   6.91   13.0    41.3   1.36  tau=0.55
+  confidence cascade, replace (AutoMix-like)    0.673  11.35   17.1    45.5   1.81  tau=0.85
+  confidence cascade, verified select           0.647   3.86    9.2    33.5   1.07  tau=0.10
+  confidence cascade, verified select           0.650   4.33    9.8    35.1   1.11  tau=0.25
+  confidence cascade, verified select           0.653   4.89   10.7    36.7   1.17  tau=0.35
+  confidence cascade, verified select           0.663   6.91   13.0    41.3   1.36  tau=0.55
+  confidence cascade, verified select           0.667   8.39   14.5    43.4   1.50  tau=0.65
+  confidence cascade, verified select           0.673  12.79   18.3    45.5   1.98  tau=0.95
+  oracle (1 action)                             0.763   3.70    9.4    35.1   1.13  
+
+== Matched COST budget: PlanGate-full (best policy family) vs best external baseline
+  budget 1.25x ( 3.79): PlanGate-full 0.660 (cost 3.66) | best baseline 0.630 [fixed flash] | PlanGate-nodb 0.637 | diff +0.030 CI[+0.010,+0.053]
+  budget 1.50x ( 4.55): PlanGate-full 0.670 (cost 4.06) | best baseline 0.647 [rule cascade (DB trigger->qwen)] | PlanGate-nodb 0.650 | diff +0.023 CI[+0.007,+0.043]
+  budget 2.00x ( 6.06): PlanGate-full 0.670 (cost 4.06) | best baseline 0.647 [rule cascade (DB trigger->qwen)] | PlanGate-nodb 0.657 | diff +0.023 CI[+0.003,+0.043]
+  budget 3.00x ( 9.09): PlanGate-full 0.673 (cost 8.40) | best baseline 0.670 [agreement cascade (MoT-style)] | PlanGate-nodb 0.660 | diff +0.003 CI[-0.027,+0.033]
+  budget 4.00x (12.12): PlanGate-full 0.680 (cost 9.52) | best baseline 0.673 [fixed qwen] | PlanGate-nodb 0.663 | diff +0.007 CI[-0.027,+0.037]
+
+== Head-to-head vs published methods (PlanGate point with cost <= method cost; paired bootstrap)
+  AutoMix (theta=0.30)               acc=0.647 cost=12.91 | PlanGate 0.680 @  9.52 | diff +0.033 CI[+0.003,+0.067]
+  AutoMix (theta=0.60)               acc=0.650 cost=13.76 | PlanGate 0.680 @  9.52 | diff +0.030 CI[-0.003,+0.063]
+  AutoMix (theta=0.90)               acc=0.667 cost=15.11 | PlanGate 0.680 @  9.52 | diff +0.013 CI[-0.020,+0.043]
+  CHASE-SQL selection (flash, pro, qwen) acc=0.637 cost=21.42 | PlanGate 0.680 @  9.52 | diff +0.043 CI[+0.007,+0.080]
+  CHASE-SQL selection (flash x2, pro, qwen) acc=0.637 cost=25.57 | PlanGate 0.680 @  9.52 | diff +0.043 CI[+0.007,+0.080]
+  EllieSQL G_B (always)              acc=0.593 cost= 5.68 | PlanGate 0.670 @  4.06 | diff +0.077 CI[+0.037,+0.120]
+  EllieSQL G_M (always)              acc=0.640 cost= 6.83 | PlanGate 0.670 @  4.06 | diff +0.030 CI[-0.013,+0.073]
+  EllieSQL G_A (always)              acc=0.640 cost= 9.52 | PlanGate 0.673 @  8.40 | diff +0.033 CI[-0.007,+0.077]
+  EllieSQL (DPO router)              acc=0.633 cost= 7.21 | PlanGate 0.670 @  4.06 | diff +0.037 CI[-0.007,+0.080]
+  SQLens (flash)                     acc=0.643 cost= 9.43 | PlanGate 0.673 @  8.40 | diff +0.030 CI[+0.000,+0.060]
+  SQLens (pro)                       acc=0.633 cost=13.22 | PlanGate 0.680 @  9.52 | diff +0.047 CI[+0.017,+0.077]
+  EllieSQL (in-domain router)        acc=0.637 cost= 6.42 | PlanGate 0.670 @  4.06 | diff +0.033 CI[-0.010,+0.073]
+  EllieSQL (in-domain router, t=0.3) acc=0.630 cost= 6.22 | PlanGate 0.670 @  4.06 | diff +0.040 CI[-0.003,+0.083]
+  EllieSQL (in-domain router, t=0.5) acc=0.637 cost= 6.57 | PlanGate 0.670 @  4.06 | diff +0.033 CI[-0.007,+0.077]
+  EllieSQL (in-domain router, t=0.7) acc=0.643 cost= 6.99 | PlanGate 0.670 @  4.06 | diff +0.027 CI[-0.013,+0.070]
+  EllieSQL (in-domain router, t=0.9) acc=0.650 cost= 7.92 | PlanGate 0.670 @  4.06 | diff +0.020 CI[-0.023,+0.063]
+  DIN-SQL                            acc=0.537 cost=20.96 | PlanGate 0.680 @  9.52 | diff +0.143 CI[+0.090,+0.200]
+  MAC-SQL                            acc=0.660 cost= 6.63 | PlanGate 0.670 @  4.06 | diff +0.010 CI[-0.033,+0.053]
+  AutoMix few-shot (theta=0.30)      acc=0.643 cost=13.88 | PlanGate 0.680 @  9.52 | diff +0.037 CI[+0.010,+0.067]
+  AutoMix few-shot (theta=0.60)      acc=0.653 cost=14.90 | PlanGate 0.680 @  9.52 | diff +0.027 CI[-0.003,+0.057]
+  AutoMix few-shot (theta=0.90)      acc=0.673 cost=16.44 | PlanGate 0.680 @  9.52 | diff +0.007 CI[-0.020,+0.033]
+  CHASE-SQL selection few-shot (flash, pro, qwen) acc=0.633 cost=21.74 | PlanGate 0.680 @  9.52 | diff +0.047 CI[+0.013,+0.083]
+  CHASE-SQL selection few-shot (flash x2, pro, qwen) acc=0.643 cost=26.03 | PlanGate 0.680 @  9.52 | diff +0.037 CI[+0.000,+0.073]
+  SQLens separate-prompts (flash)    acc=0.637 cost=23.02 | PlanGate 0.680 @  9.52 | diff +0.043 CI[+0.013,+0.077]
+  SQLens separate-prompts (pro)      acc=0.627 cost=37.83 | PlanGate 0.680 @  9.52 | diff +0.053 CI[+0.023,+0.083]
+
+== Split-half validation (operating point chosen on one half, scored on the other; averaged)
+  budget 1.25x: PlanGate-full 0.657 (cost 3.56) | PlanGate-nodb 0.637 (cost 3.72) | best external baseline 0.623 (cost 3.13) | full - best-baseline +0.033 CI[+0.010,+0.057]
+  budget 1.50x: PlanGate-full 0.663 (cost 3.89) | PlanGate-nodb 0.637 (cost 3.89) | best external baseline 0.630 (cost 3.38) | full - best-baseline +0.033 CI[+0.013,+0.057]
+  budget 2.00x: PlanGate-full 0.663 (cost 3.89) | PlanGate-nodb 0.640 (cost 4.37) | best external baseline 0.630 (cost 3.38) | full - best-baseline +0.033 CI[+0.013,+0.057]
+  budget 3.00x: PlanGate-full 0.660 (cost 6.05) | PlanGate-nodb 0.633 (cost 5.15) | best external baseline 0.633 (cost 7.22) | full - best-baseline +0.027 CI[-0.013,+0.070]
+
+== Cost / latency PlanGate-full needs to match each baseline's accuracy
+  fixed qwen                       acc=0.673 cost= 9.74 p95= 30.0s  ->  PlanGate cost  8.40 (-14%), p95  44.5s (+48%)
+  self-consistency@3 (flash)       acc=0.640 cost= 9.18 p95= 35.3s  ->  PlanGate cost  3.13 (-66%), p95  32.5s (-8%)
+  self-consistency@2 (flash)       acc=0.630 cost= 6.14 p95= 34.0s  ->  PlanGate cost  3.13 (-49%), p95  32.5s (-4%)
+  ensemble@5 exec-vote             acc=0.657 cost=24.76 p95= 39.6s  ->  PlanGate cost  3.46 (-86%), p95  32.9s (-17%)
+  ensemble@4 exec-vote             acc=0.663 cost=21.72 p95= 39.0s  ->  PlanGate cost  3.83 (-82%), p95  34.1s (-13%)
+  ensemble@3 models exec-vote      acc=0.657 cost=18.70 p95= 38.8s  ->  PlanGate cost  3.46 (-82%), p95  32.9s (-15%)
+  agreement cascade (MoT-style)    acc=0.670 cost= 9.08 p95= 44.5s  ->  PlanGate cost  4.06 (-55%), p95  34.1s (-23%)
+  rule cascade (DB trigger->qwen)  acc=0.647 cost= 3.96 p95= 32.9s  ->  PlanGate cost  3.32 (-16%), p95  32.7s (-1%)
+  AutoMix (theta=0.30)             acc=0.647 cost=12.91 p95= 48.1s  ->  PlanGate cost  3.32 (-74%), p95  32.7s (-32%)
+  AutoMix (theta=0.60)             acc=0.650 cost=13.76 p95= 56.2s  ->  PlanGate cost  3.32 (-76%), p95  32.7s (-42%)
+  AutoMix (theta=0.90)             acc=0.667 cost=15.11 p95= 62.6s  ->  PlanGate cost  3.83 (-75%), p95  34.1s (-46%)
+  CHASE-SQL selection (flash, pro, qwen) acc=0.637 cost=21.42 p95= 44.5s  ->  PlanGate cost  3.13 (-85%), p95  32.5s (-27%)
+  CHASE-SQL selection (flash x2, pro, qwen) acc=0.637 cost=25.57 p95= 54.0s  ->  PlanGate cost  3.13 (-88%), p95  32.5s (-40%)
+  EllieSQL G_B (always)            acc=0.593 cost= 5.68 p95= 38.0s  ->  PlanGate cost  3.13 (-45%), p95  32.5s (-14%)
+  EllieSQL G_M (always)            acc=0.640 cost= 6.83 p95= 44.6s  ->  PlanGate cost  3.13 (-54%), p95  32.5s (-27%)
+  EllieSQL G_A (always)            acc=0.640 cost= 9.52 p95= 65.3s  ->  PlanGate cost  3.13 (-67%), p95  32.5s (-50%)
+  EllieSQL (DPO router)            acc=0.633 cost= 7.21 p95= 56.8s  ->  PlanGate cost  3.13 (-57%), p95  32.5s (-43%)
+  SQLens (flash)                   acc=0.643 cost= 9.43 p95= 72.8s  ->  PlanGate cost  3.23 (-66%), p95  32.7s (-55%)
+  SQLens (pro)                     acc=0.633 cost=13.22 p95= 59.8s  ->  PlanGate cost  3.13 (-76%), p95  32.5s (-46%)
+  EllieSQL (in-domain router)      acc=0.637 cost= 6.42 p95= 53.2s  ->  PlanGate cost  3.13 (-51%), p95  32.5s (-39%)
+  EllieSQL (in-domain router, t=0.3) acc=0.630 cost= 6.22 p95= 49.3s  ->  PlanGate cost  3.13 (-50%), p95  32.5s (-34%)
+  EllieSQL (in-domain router, t=0.5) acc=0.637 cost= 6.57 p95= 53.2s  ->  PlanGate cost  3.13 (-52%), p95  32.5s (-39%)
+  EllieSQL (in-domain router, t=0.7) acc=0.643 cost= 6.99 p95= 54.8s  ->  PlanGate cost  3.23 (-54%), p95  32.7s (-40%)
+  EllieSQL (in-domain router, t=0.9) acc=0.650 cost= 7.92 p95= 56.7s  ->  PlanGate cost  3.32 (-58%), p95  32.7s (-42%)
+  DIN-SQL                          acc=0.537 cost=20.96 p95=178.4s  ->  PlanGate cost  3.13 (-85%), p95  32.5s (-82%)
+  MAC-SQL                          acc=0.660 cost= 6.63 p95= 56.1s  ->  PlanGate cost  3.66 (-45%), p95  33.9s (-39%)
+  AutoMix few-shot (theta=0.30)    acc=0.643 cost=13.88 p95= 53.9s  ->  PlanGate cost  3.23 (-77%), p95  32.7s (-39%)
+  AutoMix few-shot (theta=0.60)    acc=0.653 cost=14.90 p95= 57.6s  ->  PlanGate cost  3.46 (-77%), p95  32.9s (-43%)
+  AutoMix few-shot (theta=0.90)    acc=0.673 cost=16.44 p95= 60.7s  ->  PlanGate cost  8.40 (-49%), p95  44.5s (-27%)
+  CHASE-SQL selection few-shot (flash, pro, qwen) acc=0.633 cost=21.74 p95= 45.4s  ->  PlanGate cost  3.13 (-86%), p95  32.5s (-28%)
+  CHASE-SQL selection few-shot (flash x2, pro, qwen) acc=0.643 cost=26.03 p95= 50.0s  ->  PlanGate cost  3.23 (-88%), p95  32.7s (-35%)
+  SQLens separate-prompts (flash)  acc=0.637 cost=23.02 p95= 72.1s  ->  PlanGate cost  3.13 (-86%), p95  32.5s (-55%)
+  SQLens separate-prompts (pro)    acc=0.627 cost=37.83 p95= 79.0s  ->  PlanGate cost  3.13 (-92%), p95  32.5s (-59%)
+
+== Plan diversity, PlanGate-full lam=0.02 (14 distinct plans)
+   226  acc=0.69  ACCEPT
+    18  acc=0.56  REPAIR_DB
+    16  acc=0.50  RESAMPLE_1
+    12  acc=0.42  RESAMPLE_1->RESAMPLE_2->REPAIR_DB
+     9  acc=0.56  REPAIR_DB->RESAMPLE_1->RESAMPLE_2
+     4  acc=0.25  REPAIR_DB->RESAMPLE_1
+     4  acc=0.75  RESAMPLE_1->REPAIR_DB->RESAMPLE_2
+     3  acc=0.33  RESAMPLE_1->RESAMPLE_2
+     2  acc=0.50  RESAMPLE_1->RESAMPLE_2->SWITCH_PRO
+     2  acc=1.00  VALUE_FIX
+     1  acc=1.00  REPAIR_DB->SWITCH_PRO
+     1  acc=1.00  REPAIR_DB->VALUE_FIX
+  first action | DB-flagged: REPAIR_DB=14, RESAMPLE_1=6, VALUE_FIX=2, ACCEPT=1
+  first action | unflagged : ACCEPT=225, RESAMPLE_1=33, REPAIR_DB=19
+saved results/crossfit/planner_frontier_sqlite.png

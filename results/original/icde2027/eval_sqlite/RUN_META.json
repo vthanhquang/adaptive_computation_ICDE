@@ -1,0 +1,41 @@
+{
+ "git_commit": "551176be71be36758693a401026643aaef8cf4a8",
+ "engine": "sqlite",
+ "planner_checkpoint": "591752f7e54ac698",
+ "splits": {
+  "sqlite_train": "ad4b4508d4e2c814a4ed0b10c72448d777f611f465aec54af423c0569913a9e2",
+  "sqlite_train:oof": "ad4b4508d4e2c814a4ed0b10c72448d777f611f465aec54af423c0569913a9e2",
+  "sqlite_testA": "9559c982dc0c054200b01ebf8ee513bcf1b7861590e1c87e081663a253f98ecb"
+ },
+ "prices": [
+  1.0,
+  30.0,
+  100.0
+ ],
+ "lambdas": [
+  0.0,
+  0.005,
+  0.01,
+  0.02,
+  0.03,
+  0.05,
+  0.08,
+  0.12,
+  0.2,
+  0.35
+ ],
+ "n_masks": 4,
+ "budgets": [
+  1.25,
+  1.5,
+  2.0,
+  3.0,
+  4.0
+ ],
+ "models": {
+  "cheap": "deepseek-v4-flash",
+  "mid": "deepseek-v4-pro",
+  "strong": "qwen3.8-max"
+ },
+ "time_s": 7402.030944347382
+}

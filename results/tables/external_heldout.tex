@@ -1,0 +1,13 @@
+\begin{tabular}{@{}lllrlll@{}}
+\toprule
+ & \multicolumn{3}{c}{PostgreSQL ($n{=}498$)} & \multicolumn{3}{c}{SQLite ($n{=}300$)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Budget & best external & \sys{} & $\Delta$ [95\% CI] & best external & \sys{} & $\Delta$ [95\% CI] \\
+\midrule
+1.25$\times$ & cheap model 0.592 & 0.604 & +1.2 [+0.2, +2.4] & cheap model 0.630 & 0.640 & +1.0 [+0.0, +2.3] \\
+1.5$\times$ & rule cascade 0.612 & 0.629 & +1.6 [$-$0.2, +3.4] & rule cascade 0.647 & 0.640 & $-$0.7 [$-$2.0, +0.7] \\
+2.0$\times$ & rule cascade 0.612 & 0.633 & +2.0 [+0.0, +4.0] & rule cascade 0.647 & 0.637 & $-$1.0 [$-$2.3, +0.3] \\
+3.0$\times$ & rule cascade 0.612 & 0.633 & +2.0 [+0.0, +4.0] & MoT cascade 0.670 & 0.667 & $-$0.3 [$-$3.3, +2.7] \\
+4.0$\times$ & MoT cascade 0.643 & 0.633 & $-$1.0 [$-$3.8, +1.8] & strong model 0.673 & 0.687 & +1.3 [$-$1.3, +4.0] \\
+\bottomrule
+\end{tabular}

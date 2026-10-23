@@ -1,0 +1,57 @@
+{
+ "seed": 20261019,
+ "splits": {
+  "pg_train": 720,
+  "pg_cal": 310,
+  "pg_test": 500,
+  "sqlite_test": 300,
+  "sqlite_train": 800,
+  "sqlite_cal": 300
+ },
+ "leakage": [
+  {
+   "pair": "pg_train vs pg_test",
+   "n_train": 720,
+   "n_test": 500,
+   "violations": 0,
+   "examples": []
+  },
+  {
+   "pair": "pg_cal vs pg_test",
+   "n_train": 310,
+   "n_test": 500,
+   "violations": 0,
+   "examples": []
+  },
+  {
+   "pair": "pg_train vs pg_cal",
+   "n_train": 720,
+   "n_test": 310,
+   "violations": 0,
+   "examples": []
+  },
+  {
+   "pair": "sqlite_train vs sqlite_cal",
+   "n_train": 800,
+   "n_test": 300,
+   "violations": 0,
+   "examples": []
+  },
+  {
+   "pair": "sqlite_train vs sqlite_test",
+   "n_train": 196,
+   "n_test": 300,
+   "violations": 0,
+   "examples": []
+  },
+  {
+   "pair": "sqlite_cal vs sqlite_test",
+   "n_train": 91,
+   "n_test": 300,
+   "violations": 0,
+   "examples": []
+  }
+ ],
+ "sqlite_db_overlap_train_test": [],
+ "sqlite_db_overlap_train_cal": []
+}

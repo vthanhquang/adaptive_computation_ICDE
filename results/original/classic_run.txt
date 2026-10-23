@@ -1,0 +1,17 @@
+25/300 167s
+50/300 1534s
+75/300 3279s
+100/300 3498s
+125/300 3696s
+150/300 3861s
+175/300 4045s
+200/300 4241s
+225/300 4462s
+250/300 4618s
+275/300 4806s
+300/300 4943s
+DIN-SQL  EX=0.537 cost=20.96 tokens=38917 p95=178.4s calls=4.00 errors=0 api_retries=61 empty_sql=0
+MAC-SQL  EX=0.660 cost=6.63 tokens=11398 p95=56.1s calls=1.94 errors=0 api_retries=14 empty_sql=1
+DIN-SQL class distribution: {'NON-NESTED': 206, 'EASY': 72, 'NESTED': 22}
+MAC-SQL pruned share: 0.8666666666666667
+appended DIN-SQL / MAC-SQL to D:\project_code\github\plangate_prototype_v2\results\paper_baselines.json

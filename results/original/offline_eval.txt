@@ -1,0 +1,84 @@
+﻿300 questions; ladder (by mean cost): flash_direct=3.03, pro_direct=5.67, glm_direct=5.95, pro_decompose=6.52, qwen_max_direct=9.74, kimi_decompose=13.66
+DB evidence per candidate: mean 95.2 ms, p95 439.0 ms, max 5023 ms
+
+== E5 oracle opportunity
+  fixed flash_direct       acc=0.630 cost=3.03
+  fixed pro_direct         acc=0.603 cost=5.67
+  fixed glm_direct         acc=0.597 cost=5.95
+  fixed pro_decompose      acc=0.607 cost=6.52
+  fixed qwen_max_direct    acc=0.670 cost=9.74
+  fixed kimi_decompose     acc=0.583 cost=13.66
+  oracle             acc=0.757 cost=3.47  (any-correct=0.757, all-correct=0.460)
+
+== RQ1 acceptor AUROC (cross-fitted)  [first-step candidate | all ladder states]
+  P0: 0.581 | 0.575
+  P1: 0.643 | 0.646
+  P2: 0.715 | 0.753
+
+== Pareto frontiers (cost units / query, EX accuracy)
+  fixed           (3.03,0.630)  (9.74,0.670)
+  router_P0       (3.03,0.630)  (3.34,0.637)  (4.25,0.640)  (6.82,0.653)  (9.55,0.670)
+  exec_cascade    (4.52,0.650)
+  agree_cascade   (11.61,0.663)
+  cascade_P1      (3.03,0.630)  (3.22,0.633)  (3.80,0.637)  (6.29,0.640)
+  cascade_P2      (3.13,0.630)  (3.18,0.637)  (3.73,0.643)  (4.98,0.650)  (4.99,0.653)  (5.26,0.657)  (5.74,0.660)  (6.08,0.663)  (7.85,0.667)  (8.39,0.670)  (8.51,0.673)  (11.24,0.677)
+  plangate_P0     (3.03,0.630)  (3.06,0.633)  (3.10,0.637)  (3.23,0.640)  (5.94,0.643)  (20.97,0.647)  (21.65,0.653)  (22.64,0.657)  (23.35,0.663)  (24.73,0.667)
+  plangate_P0_router (3.09,0.630)  (3.11,0.633)  (3.17,0.637)  (3.30,0.640)  (5.99,0.643)  (20.97,0.647)  (21.65,0.653)  (22.64,0.657)  (23.35,0.663)  (24.73,0.667)
+  plangate_P1     (3.03,0.630)  (3.37,0.637)  (23.21,0.640)  (24.68,0.657)
+  plangate_P1_router (3.09,0.630)  (3.46,0.637)  (23.21,0.640)  (24.68,0.657)
+  plangate_P2     (3.13,0.630)  (3.23,0.633)  (3.75,0.640)  (14.62,0.643)  (17.20,0.650)  (18.90,0.657)  (20.72,0.660)  (21.22,0.670)  (23.73,0.673)
+  plangate_P2_router (3.19,0.630)  (3.29,0.633)  (3.82,0.640)  (14.68,0.643)  (17.26,0.650)  (18.92,0.657)  (20.74,0.660)  (21.24,0.670)  (23.73,0.673)
+
+== Max accuracy within budget (x cheapest config cost 3.03); oracle acc=0.757 @ 3.47
+  policy                   1.00x   1.25x   1.50x   2.00x   3.00x   5.00x
+  fixed                    0.630   0.630   0.630   0.630   0.630   0.670
+  router_P0                0.630   0.637   0.640   0.640   0.653   0.670
+  exec_cascade                 -       -   0.650   0.650   0.650   0.650
+  agree_cascade                -       -       -       -       -   0.663
+  cascade_P1               0.630   0.633   0.637   0.637   0.640   0.640
+  cascade_P2                   -   0.643   0.643   0.660   0.673   0.677
+  plangate_P0              0.630   0.640   0.640   0.643   0.643   0.643
+  plangate_P0_router           -   0.640   0.640   0.643   0.643   0.643
+  plangate_P1              0.630   0.637   0.637   0.637   0.637   0.637
+  plangate_P1_router           -   0.637   0.637   0.637   0.637   0.637
+  plangate_P2                  -   0.640   0.640   0.640   0.640   0.643
+  plangate_P2_router           -   0.633   0.640   0.640   0.640   0.643
+
+== Paired bootstrap vs router_P0 at matched budget (diff in accuracy, 95% CI, P(diff>0))
+  1.5x  cascade_P1           -0.003  [-0.020, +0.013]  P>0=0.29
+  1.5x  cascade_P2           +0.003  [-0.017, +0.023]  P>0=0.55
+  1.5x  plangate_P1_router   -0.003  [-0.020, +0.013]  P>0=0.30
+  1.5x  plangate_P2_router   +0.000  [-0.017, +0.020]  P>0=0.45
+  1.5x  exec_cascade         +0.010  [-0.010, +0.030]  P>0=0.78
+  2.0x  cascade_P1           -0.003  [-0.020, +0.013]  P>0=0.28
+  2.0x  cascade_P2           +0.020  [-0.003, +0.043]  P>0=0.95
+  2.0x  plangate_P1_router   -0.003  [-0.020, +0.013]  P>0=0.29
+  2.0x  plangate_P2_router   +0.000  [-0.017, +0.020]  P>0=0.44
+  2.0x  exec_cascade         +0.010  [-0.010, +0.033]  P>0=0.78
+  3.0x  cascade_P1           -0.013  [-0.043, +0.017]  P>0=0.16
+  3.0x  cascade_P2           +0.020  [-0.010, +0.050]  P>0=0.88
+  3.0x  plangate_P1_router   -0.017  [-0.050, +0.013]  P>0=0.13
+  3.0x  plangate_P2_router   -0.013  [-0.047, +0.017]  P>0=0.17
+  3.0x  exec_cascade         -0.003  [-0.037, +0.030]  P>0=0.38
+
+== Decision change rate P1->P2 at first step (accept vs escalate): tau=0.5: 20.0%, tau=0.6: 22.0%, tau=0.7: 23.3%, tau=0.8: 13.3%
+
+== Plan diversity at plangate_P2_router lam=0.002 (acc=0.673, cost=23.73)
+    84  flash_direct->pro_direct->glm_direct->pro_decompose=>flash_direct
+    70  flash_direct->qwen_max_direct->pro_direct->glm_direct=>flash_direct
+    28  flash_direct->qwen_max_direct->pro_direct->glm_direct=>qwen_max_direct
+    22  flash_direct->pro_direct->glm_direct->pro_decompose=>pro_direct
+    14  flash_direct->qwen_max_direct->pro_direct->glm_direct=>pro_direct
+    12  flash_direct->pro_direct->qwen_max_direct->glm_direct=>flash_direct
+    11  flash_direct->qwen_max_direct->pro_direct->glm_direct=>glm_direct
+     9  flash_direct->pro_direct->glm_direct->pro_decompose=>glm_direct
+     5  flash_direct->pro_direct->glm_direct->qwen_max_direct=>flash_direct
+     5  flash_direct->pro_direct->qwen_max_direct->glm_direct=>qwen_max_direct
+     4  flash_direct->pro_direct->pro_decompose->glm_direct=>pro_direct
+     4  flash_direct->pro_direct->glm_direct->pro_decompose=>pro_decompose
+     3  flash_direct->pro_direct->glm_direct->qwen_max_direct=>qwen_max_direct
+     3  flash_direct->pro_direct->qwen_max_direct->glm_direct=>pro_direct
+     3  flash_direct->qwen_max_direct->glm_direct->pro_decompose=>qwen_max_direct
+  distinct plans: 37
+
+saved D:\project_code\github\plangate_prototype_v2\results\frontier.png

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlanGate Experiment Report</title>
+<style>
+  body {
+    margin: 0;
+    background: #ffffff;
+    color: #000000;
+    font-family: "Latin Modern Roman", "Computer Modern Serif", "CMU Serif", "Times New Roman", Times, serif;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .page { max-width: 760px; margin: 0 auto; padding: 48px 20px 80px; }
+  h1 { font-size: 1.55em; font-weight: normal; text-align: center; margin: 0 0 10px; }
+  .author { text-align: center; margin: 0 0 4px; }
+  .date { text-align: center; margin: 0 0 28px; }
+  .abstract { margin: 0 36px 28px; font-size: 0.95em; }
+  .abstract h2 { font-size: 1em; text-align: center; margin: 0 0 6px; border: none; }
+  h2 { font-size: 1.2em; margin: 30px 0 8px; }
+  h3 { font-size: 1.02em; margin: 20px 0 6px; }
+  p { margin: 0 0 10px; text-align: justify; hyphens: auto; }
+  p + p { text-indent: 1.5em; }
+  table { border-collapse: collapse; margin: 6px auto 4px; font-size: 0.92em; }
+  thead tr:first-child th { border-top: 1.5px solid #000; }
+  thead th { border-bottom: 0.8px solid #000; font-weight: normal; padding: 4px 10px; }
+  tbody tr:last-child td { border-bottom: 1.5px solid #000; }
+  td { padding: 3px 10px; }
+  td.r, th.r { text-align: right; }
+  .tabwrap { overflow-x: auto; margin: 14px 0 18px; }
+  .caption { text-align: center; font-size: 0.9em; margin: 4px 0 0; }
+  figure { margin: 18px 0; text-align: center; }
+  figure img { max-width: 100%; height: auto; }
+  figcaption { font-size: 0.9em; margin-top: 4px; }
+  ol, ul { margin: 4px 0 10px; padding-left: 26px; }
+  li { margin: 2px 0; }
+  .note { font-size: 0.88em; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>PlanGate: thí nghiệm sơ bộ về lập kế hoạch suy luận<br>dựa trên bằng chứng từ DBMS cho Text-to-SQL</h1>
+<p class="author">Báo cáo tiến độ nghiên cứu</p>
+<p class="date">Tháng 10, 2026</p>
+
+<div class="abstract">
+<h2>Tóm tắt</h2>
+<p>Báo cáo này tổng hợp các thí nghiệm đã thực hiện cho hướng PlanGate, tức là xem việc phục vụ Text-to-SQL bằng LLM như một bài toán lập kế hoạch tuần tự trên cả operator LLM lẫn operator DBMS. Thí nghiệm được thực hiện trên hai nhánh: 300 câu của BIRD dev trên SQLite và 500 câu của BIRD mini-dev trên PostgreSQL 16. Kết quả cho thấy (i) các probe rẻ trên DB mang nhiều thông tin cho việc ra quyết định hơn một lần gọi LLM bổ sung, trong khi độ trễ thấp hơn vài trăm lần; (ii) LLM khi chỉ đọc SQL để chọn giữa hai candidate cho kết quả không tốt hơn ngẫu nhiên, nhưng cải thiện rõ khi có bằng chứng thực thi; (iii) ước lượng chi phí của optimizer PostgreSQL tương quan rất chặt với thời gian thực thi thật (Spearman 0.962), nên có thể dùng để định giá bằng chứng trước khi thu thập. Planner đề xuất đạt accuracy cao hơn baseline tốt nhất từ 1.6 đến 3.8 điểm ở cùng mức chi phí trên phần lớn các mức ngân sách, và lợi thế này không còn khi bỏ quyền truy cập DB.</p>
+</div>
+
+<h2>1&nbsp;&nbsp;Thiết lập thí nghiệm</h2>
+<p>Candidate đầu tiên luôn được sinh bởi deepseek-v4-flash, là model rẻ nhất trong pool. Các action LLM gồm sinh lại cùng model ở temperature 0.8 (resample), sửa lỗi có kèm bằng chứng từ DB (repair), và chuyển sang deepseek-v4-pro hoặc qwen3.8-max. Các action phía DBMS gồm kiểm tra parse/bind, lấy query plan qua EXPLAIN, micro-probe kiểm tra giá trị literal có tồn tại trong cột hay không, thực thi có giới hạn thời gian (chỉ giữ hình dạng kết quả và fingerprint), sửa literal trực tiếp từ DB mà không gọi LLM (VALUE_FIX), và differential probe giữa hai candidate.</p>
+<p>Chỉ số chính là execution accuracy (EX) của BIRD. Chi phí được tính bằng đơn vị token có trọng số theo giá từng model, cộng thêm thời gian DB. Mọi kết quả LLM đều được cache, nên tất cả các policy được so sánh trên cùng một tập outcome. Các mô hình học (bộ chấm, bộ chọn, hàm giá trị) đều được cross-fit theo câu hỏi, và khoảng tin cậy 95% được tính bằng paired bootstrap.</p>
+
+<h2>2&nbsp;&nbsp;Dư địa tối ưu (oracle)</h2>
+<p>Trước khi xây planner, cần đo xem nếu biết trước cấu hình rẻ nhất cho ra đáp án đúng ở từng câu thì tiết kiệm được bao nhiêu. Bảng 1 cho thấy oracle đạt 0.757 với chi phí 3.47, trong khi cấu hình cố định tốt nhất (qwen) chỉ đạt 0.670 với chi phí 9.74. Đáng chú ý là accuracy không tăng theo chi phí: cấu hình đắt nhất (kimi kèm decomposition) lại cho kết quả thấp nhất. Chỉ khoảng 46% số câu được tất cả các cấu hình làm đúng.</p>
+
+<div class="tabwrap"><table>
+<thead><tr><th>Cấu hình</th><th class="r">EX</th><th class="r">Chi phí / câu</th></tr></thead>
+<tbody>
+<tr><td>flash, direct</td><td class="r">0.630</td><td class="r">3.03</td></tr>
+<tr><td>pro, direct</td><td class="r">0.603</td><td class="r">5.67</td></tr>
+<tr><td>glm, direct</td><td class="r">0.597</td><td class="r">5.95</td></tr>
+<tr><td>pro, decompose</td><td class="r">0.607</td><td class="r">6.52</td></tr>
+<tr><td>qwen, direct</td><td class="r">0.670</td><td class="r">9.74</td></tr>
+<tr><td>kimi, decompose</td><td class="r">0.583</td><td class="r">13.66</td></tr>
+<tr><td>oracle</td><td class="r">0.757</td><td class="r">3.47</td></tr>
+</tbody></table>
+<p class="caption">Bảng 1: Accuracy và chi phí của các cấu hình cố định so với oracle (SQLite, n = 300).</p></div>
+
+<h2>3&nbsp;&nbsp;Giá trị của thông tin sau khi sinh SQL</h2>
+<p>Câu hỏi đầu tiên là liệu thông tin có được sau khi đã có SQL candidate có giúp dự đoán candidate đó đúng hay sai tốt hơn thông tin chỉ từ câu hỏi và schema hay không. Trạng thái được chia thành ba mức: P0 (câu hỏi và schema), P1 (thêm đặc trưng của SQL) và P2 (thêm bằng chứng từ DB). AUROC tăng đều từ 0.58 (P0) lên 0.64 (P1) và 0.72 (P2) trên candidate đầu tiên. Như vậy một router chỉ nhìn câu hỏi gần như không có khả năng phân biệt, và phần lớn tín hiệu xuất hiện sau khi sinh SQL.</p>
+
+<h3>3.1&nbsp;&nbsp;Đóng góp của từng action</h3>
+<p>Bảng 2 tách riêng đóng góp của từng nguồn bằng chứng, tính theo mức tăng AUROC so với P1. Tổng hợp bốn probe DB tăng AUROC 0.080 trên SQLite và 0.060 trên PostgreSQL, với độ trễ median chỉ 20 ms và 8 ms. Một điểm đáng chú ý: nếu sinh thêm một sample LLM nhưng chỉ so sánh chuỗi SQL thì gần như không có thông tin gì (−0.004 và +0.004). Sample đó chỉ có ích khi được thực thi trên DB và so sánh kết quả. Nói cách khác, ngay cả tín hiệu "hỏi thêm LLM" thực chất cũng là tín hiệu từ DB.</p>
+
+<div class="tabwrap"><table>
+<thead><tr><th>Nguồn bằng chứng</th><th class="r">SQLite ΔAUROC</th><th class="r">ms</th><th class="r">PostgreSQL ΔAUROC</th><th class="r">ms</th></tr></thead>
+<tbody>
+<tr><td>Parse/bind</td><td class="r">+0.010</td><td class="r">1.7</td><td class="r">+0.022</td><td class="r">2.1</td></tr>
+<tr><td>EXPLAIN</td><td class="r">−0.002</td><td class="r">2.1</td><td class="r">+0.011</td><td class="r">0.6</td></tr>
+<tr><td>Value probe</td><td class="r">+0.036</td><td class="r">2.7</td><td class="r">+0.016</td><td class="r">2.1</td></tr>
+<tr><td>Thực thi có giới hạn</td><td class="r">+0.066</td><td class="r">9.0</td><td class="r">+0.058</td><td class="r">2.3</td></tr>
+<tr><td>Cả bốn probe DB</td><td class="r">+0.080</td><td class="r">20</td><td class="r">+0.060</td><td class="r">8.4</td></tr>
+<tr><td>Thêm 1 sample LLM, so chuỗi SQL</td><td class="r">−0.004</td><td class="r">4399</td><td class="r">+0.004</td><td class="r">4661</td></tr>
+<tr><td>Thêm 1 sample LLM, so kết quả thực thi</td><td class="r">+0.046</td><td class="r">4433</td><td class="r">+0.068</td><td class="r">4662</td></tr>
+<tr><td>Candidate từ model khác, so kết quả thực thi</td><td class="r">+0.042</td><td class="r">3361</td><td class="r">+0.074</td><td class="r">2951</td></tr>
+</tbody></table>
+<p class="caption">Bảng 2: Mức tăng AUROC so với P1 khi dự đoán candidate đầu tiên có đúng hay không, kèm độ trễ median.</p></div>
+
+<h2>4&nbsp;&nbsp;Action nào thực sự cứu được câu sai?</h2>
+<p>Với mỗi câu, xác định action rẻ nhất sau candidate đầu tiên cho ra đáp án đúng. Trên SQLite, 63% câu đã đúng ngay từ đầu, VALUE_FIX chỉ cứu được 1%, resample 6%, repair 2%, đổi model 4.7%, và 23% không action nào trong pool cứu được. Kết quả trên PostgreSQL tương tự (59%, 1%, 6%, 3%, 6% và 25%). Như vậy DB hiếm khi tự tạo ra đáp án đúng; giá trị chính của nó nằm ở chỗ cung cấp thông tin để quyết định bước tiếp theo.</p>
+<p>Tuy nhiên, khi chia theo trạng thái mà DB quan sát được, bức tranh khác hẳn. Với những câu bị DB gắn cờ (lỗi parse, literal không tồn tại, kết quả rỗng hoặc toàn NULL), các action rẻ cứu được 50% số câu sai trên SQLite, và trên PostgreSQL thì repair có kèm bằng chứng là action tốt nhất (0.38). Ngược lại, với các câu không bị gắn cờ, action rẻ chỉ cứu được 18%, và chỉ việc chuyển sang model mạnh hơn mới thực sự có ích. Điều này gợi ý rằng action tối ưu phụ thuộc vào trạng thái, và trạng thái đó có thể quan sát được với chi phí rất thấp.</p>
+<p>Hiệu quả trên mỗi giây của từng action cũng được so sánh trực tiếp. Ở vùng bị gắn cờ, VALUE_FIX cho mức tăng xác suất đúng trên mỗi giây cao hơn khoảng 45 lần so với action LLM tốt nhất. Ở vùng không gắn cờ nhưng còn bất định, việc thay candidate đầu tiên bằng một sample mới lại làm giảm accuracy 8.4 điểm. Từ quan sát này, mọi action thay thế đều phải được kiểm chứng trước khi được chấp nhận.</p>
+
+<h3>4.1&nbsp;&nbsp;Có cần chạy mọi probe không?</h3>
+<p>Thí nghiệm tiếp theo dùng một gate học được, chỉ chạy probe nào được dự đoán là sẽ làm thay đổi quyết định. Trên SQLite, cách này giảm 81% thời gian DB trung bình (từ 102.6 ms xuống 19.0 ms mỗi câu) và 87% ở p95, trong khi accuracy gần như giữ nguyên (0.650 so với 0.657). Dù vậy, vì DB trên BIRD vốn đã rẻ so với một lần gọi LLM, tác động end-to-end của kết quả này còn nhỏ.</p>
+
+<h2>5&nbsp;&nbsp;Bài toán chọn candidate</h2>
+<p>Phân tích kỹ hơn cho thấy nút thắt chính không nằm ở việc sinh candidate mà ở việc chọn. Nếu chọn đúng như oracle trong pool thì đạt 0.763, nhưng bỏ phiếu theo kết quả thực thi chỉ đạt 0.663. Để hiểu rõ hơn, LLM được dùng làm judge trên 155 cặp candidate mà đúng một bên đúng, mỗi cặp được hỏi theo cả hai thứ tự để loại bỏ thiên lệch vị trí.</p>
+
+<div class="tabwrap"><table>
+<thead><tr><th>Judge</th><th class="r">Chỉ SQL</th><th class="r">+ xem trước kết quả</th><th class="r">+ differential probe</th></tr></thead>
+<tbody>
+<tr><td>deepseek-v4-flash</td><td class="r">0.465</td><td class="r">0.523</td><td class="r">0.577</td></tr>
+<tr><td>deepseek-v4-pro</td><td class="r">0.429</td><td class="r">0.577</td><td class="r">0.590</td></tr>
+</tbody></table>
+<p class="caption">Bảng 3: Accuracy của judge khi chọn giữa hai candidate có kết quả khác nhau (n = 155 cặp).</p></div>
+
+<p>Khi chỉ đọc SQL, cả hai judge đều không tốt hơn ngẫu nhiên; với deepseek-v4-pro, cận trên của khoảng tin cậy là 0.497, tức thấp hơn 0.5 một cách có ý nghĩa. Khi có thêm bằng chứng thực thi, accuracy tăng 11 đến 16 điểm. Differential probe (để DB tính các dòng chỉ xuất hiện ở một trong hai kết quả) giúp judge rẻ thêm 5.5 điểm so với chỉ xem trước kết quả (CI [+0.3, +10.6]), đến mức flash có differential probe ngang với pro chỉ xem trước kết quả. Với judge mạnh hơn thì hai cách cho kết quả tương đương.</p>
+
+<h2>6&nbsp;&nbsp;Optimizer như một mô hình chi phí cho bằng chứng</h2>
+<p>Trên PostgreSQL, thí nghiệm kiểm tra xem ước lượng chi phí từ <code>EXPLAIN</code> có dự đoán được thời gian thực thi của candidate hay không. Trên 2446 candidate, tương quan Spearman giữa hai đại lượng là 0.962. Ước lượng này phân biệt được các truy vấn chạy quá 100 ms với AUROC 0.924, và quá 500 ms với AUROC 0.999, trong khi bản thân EXPLAIN chỉ tốn khoảng 0.6 ms. Thời gian thực thi có phân phối đuôi dài: 5% candidate chậm nhất chiếm 34% tổng thời gian.</p>
+<p>Dựa trên quan sát đó, một policy được thử nghiệm: chỉ thực thi candidate khi ước lượng chi phí không vượt quá phân vị 95. Policy này giữ nguyên AUROC (0.759 so với 0.758 khi luôn thực thi), giảm 21% thời gian DB trung bình và 42% thời gian tối đa, và tốt hơn việc bỏ qua ngẫu nhiên ở cùng tỉ lệ thực thi.</p>
+
+<h2>7&nbsp;&nbsp;Planner có ngân sách</h2>
+<p>Planner cuối cùng giữ trạng thái là tập các candidate đã có cùng bằng chứng DB của chúng. Đáp án được chọn bởi một mô hình pairwise trên các cụm candidate có cùng kết quả thực thi. Policy gồm hai pha: trước tiên thực hiện tối đa hai action rẻ được chọn bởi hàm giá trị học được, sau đó chỉ chuyển sang model mạnh nếu giá trị ước lượng của trạng thái còn dưới một ngưỡng. Planner được so sánh với baseline ngoài tốt nhất ở cùng mức chi phí, gồm model cố định, router một bước, cascade theo luật, cascade theo độ khớp kiểu MoT, self-consistency, và ensemble 3 đến 5 candidate bỏ phiếu theo kết quả thực thi.</p>
+
+<div class="tabwrap"><table>
+<thead><tr><th>Ngân sách</th><th class="r">SQLite</th><th class="r">Baseline</th><th class="r">Δ [CI 95%]</th><th class="r">PostgreSQL</th><th class="r">Baseline</th><th class="r">Δ [CI 95%]</th></tr></thead>
+<tbody>
+<tr><td>1.25×</td><td class="r">0.660</td><td class="r">0.630</td><td class="r">+3.0 [+1.0, +5.3]</td><td class="r">0.622</td><td class="r">0.604</td><td class="r">+1.8 [+0.0, +3.6]</td></tr>
+<tr><td>1.5×</td><td class="r">0.670</td><td class="r">0.647</td><td class="r">+2.3 [+0.7, +4.3]</td><td class="r">0.628</td><td class="r">0.612</td><td class="r">+1.6 [+0.2, +3.2]</td></tr>
+<tr><td>2×</td><td class="r">0.670</td><td class="r">0.647</td><td class="r">+2.3 [+0.3, +4.3]</td><td class="r">0.648</td><td class="r">0.618</td><td class="r">+3.0 [+0.4, +5.6]</td></tr>
+<tr><td>3×</td><td class="r">0.673</td><td class="r">0.670</td><td class="r">+0.3</td><td class="r">0.670</td><td class="r">0.632</td><td class="r">+3.8 [+1.2, +6.4]</td></tr>
+<tr><td>4×</td><td class="r">0.680</td><td class="r">0.673</td><td class="r">+0.7</td><td class="r">0.676</td><td class="r">0.642</td><td class="r">+3.4 [+1.0, +5.8]</td></tr>
+</tbody></table>
+<p class="caption">Bảng 4: Accuracy của planner so với baseline ngoài tốt nhất ở cùng ngân sách (bội số chi phí của model rẻ nhất).</p></div>
+
+<p>Planner cho kết quả tốt hơn ở hầu hết các mức ngân sách, với khác biệt có ý nghĩa thống kê ở mức thấp trên SQLite và ở hầu hết các mức trên PostgreSQL. Trên PostgreSQL, planner đạt 0.676, cao hơn qwen dùng riêng (0.640) trong khi chi phí thấp hơn. Vì planner có nhiều tham số để chỉnh hơn baseline, kết quả được kiểm tra thêm bằng cách chọn điểm vận hành trên một nửa số câu và đánh giá trên nửa còn lại. Kết quả vẫn giữ được: +3.3 điểm trên SQLite ở mức 1.25 đến 2×, và +4.2 điểm (CI [+1.6, +6.8]) trên PostgreSQL ở mức 3×.</p>
+<p>Nếu xét theo hướng ngược lại, tức là chi phí cần để đạt cùng accuracy với từng baseline, thì planner rẻ hơn ensemble 3 đến 5 candidate khoảng 76 đến 86% và có p95 latency thấp hơn 13 đến 44%. So với self-consistency, chi phí giảm 49 đến 66%. Trên PostgreSQL, để đạt bằng accuracy của qwen, planner chỉ cần 53% chi phí và có p95 latency thấp hơn 27%. Trên SQLite thì ngược lại, p95 latency tăng 48% do các bước được chạy tuần tự.</p>
+<p>Khi bỏ quyền truy cập DB và chỉ dùng độ khớp chuỗi SQL, cùng planner đó đạt 0.637 đến 0.657 trên SQLite và 0.624 / 0.656 trên PostgreSQL ở mức 2× và 4×, thấp hơn rõ so với phiên bản đầy đủ (0.660 đến 0.670, và 0.648 / 0.676). Thay bộ chọn pairwise bằng bộ chọn pointwise cũng làm accuracy tối đa giảm xuống 0.653 trên SQLite và 0.640 trên PostgreSQL.</p>
+
+<h3>7.1&nbsp;&nbsp;So sánh với phương pháp đã công bố</h3>
+<p>Hai phương pháp đại diện được cài đặt lại trong cùng setting, dùng chung cache candidate và cách tính chi phí. AutoMix (Aggarwal et al., NeurIPS 2024) để model nhỏ tự kiểm chứng câu trả lời ba lần mà không thực thi, rồi chuyển sang model lớn nếu độ tin cậy thấp hơn ngưỡng θ. CHASE-SQL (Pourreza et al., ICLR 2025) gom các candidate theo kết quả thực thi và dùng một selection agent so sánh từng cặp dựa trên kết quả thực thi. Hai điểm khác bản gốc là prompt kiểm chứng của AutoMix ở dạng zero-shot, và selector của CHASE-SQL là deepseek-v4-pro không fine-tune với pool generator hiện có.</p>
+
+<div class="tabwrap"><table>
+<thead><tr><th>Phương pháp</th><th class="r">SQLite EX</th><th class="r">Chi phí</th><th class="r">p95 (s)</th><th class="r">PG EX</th><th class="r">Chi phí</th><th class="r">p95 (s)</th></tr></thead>
+<tbody>
+<tr><td>AutoMix, θ = 0.3</td><td class="r">0.647</td><td class="r">12.91</td><td class="r">48.1</td><td class="r">0.602</td><td class="r">12.72</td><td class="r">42.9</td></tr>
+<tr><td>AutoMix, θ = 0.6</td><td class="r">0.650</td><td class="r">13.76</td><td class="r">56.2</td><td class="r">0.614</td><td class="r">13.68</td><td class="r">49.6</td></tr>
+<tr><td>AutoMix, θ = 0.9</td><td class="r">0.667</td><td class="r">15.11</td><td class="r">62.6</td><td class="r">0.632</td><td class="r">14.99</td><td class="r">54.1</td></tr>
+<tr><td>CHASE-SQL (flash, pro, qwen)</td><td class="r">0.637</td><td class="r">21.42</td><td class="r">44.5</td><td class="r">0.620</td><td class="r">21.46</td><td class="r">43.3</td></tr>
+<tr><td>CHASE-SQL (flash×2, pro, qwen)</td><td class="r">0.637</td><td class="r">25.57</td><td class="r">54.0</td><td class="r">0.624</td><td class="r">26.02</td><td class="r">46.5</td></tr>
+<tr><td>PlanGate (điểm tốt nhất)</td><td class="r">0.680</td><td class="r">9.52</td><td class="r">45.3</td><td class="r">0.676</td><td class="r">11.09</td><td class="r">32.3</td></tr>
+</tbody></table>
+<p class="caption">Bảng 5: So sánh với AutoMix và CHASE-SQL (cài đặt lại trong cùng setting).</p></div>
+
+<p>Phương pháp thứ ba là EllieSQL (Zhu et al., 2025), một framework Text-to-SQL tiết kiệm chi phí dựa trên router theo độ phức tạp. Bản cài lại bám sát code công bố: prompt của schema linking và ba pipeline (G_B sinh trực tiếp; G_M divide-and-conquer kèm refiner dựa trên thực thi; G_A thêm ví dụ tổng hợp online) được giữ nguyên văn, và router là checkpoint Qwen2.5-0.5B DPO gốc với đúng định dạng input. Khác biệt duy nhất là backbone deepseek-v4-flash thay cho gpt-4o-mini. Vì router được train trên BIRD SQLite, EllieSQL chỉ được chạy trên nhánh SQLite. Phân bố route (53% G_B, 11% G_M, 36% G_A) khớp với tỉ lệ nhãn lúc train trong paper, cho thấy bản cài lại hoạt động đúng.</p>
+
+<div class="tabwrap"><table>
+<thead><tr><th>Policy</th><th class="r">EX</th><th class="r">Chi phí</th><th class="r">p95 (s)</th><th class="r">Số lần gọi LLM</th></tr></thead>
+<tbody>
+<tr><td>EllieSQL G_B (luôn dùng)</td><td class="r">0.593</td><td class="r">5.68</td><td class="r">38.0</td><td class="r">2.00</td></tr>
+<tr><td>EllieSQL G_M (luôn dùng)</td><td class="r">0.640</td><td class="r">6.83</td><td class="r">44.6</td><td class="r">2.01</td></tr>
+<tr><td>EllieSQL G_A (luôn dùng)</td><td class="r">0.640</td><td class="r">9.52</td><td class="r">65.3</td><td class="r">3.02</td></tr>
+<tr><td>EllieSQL + router DPO</td><td class="r">0.633</td><td class="r">7.21</td><td class="r">56.8</td><td class="r">2.37</td></tr>
+<tr><td>EllieSQL + router oracle</td><td class="r">0.700</td><td class="r">5.91</td><td class="r">41.8</td><td class="r">2.04</td></tr>
+<tr><td>PlanGate</td><td class="r">0.670</td><td class="r">4.06</td><td class="r">34.1</td><td class="r">1.19</td></tr>
+</tbody></table>
+<p class="caption">Bảng 6: So sánh với EllieSQL trên SQLite (n = 300).</p></div>
+
+<p>Router DPO giảm 24% chi phí so với luôn dùng G_A và chỉ mất 0.7 điểm, giống xu hướng paper báo cáo. Tuy vậy, PlanGate đạt 0.670 với chi phí 4.06, cao hơn router DPO 3.7 điểm (CI [−0.7, +8.0]) trong khi chi phí thấp hơn khoảng 44% và p95 latency thấp hơn 43%. Khác biệt accuracy chưa có ý nghĩa thống kê ở n = 300, nhưng khác biệt chi phí thì rõ. Khi phân tích riêng router, khả năng dự đoán pipeline cơ bản sẽ sai chỉ đạt AUROC 0.613, tương đương router dựa trên câu hỏi (0.58) và thấp hơn bằng chứng DB sau khi sinh SQL (0.715). Router oracle đạt 0.700 với chi phí 5.91, nghĩa là dư địa của EllieSQL có thật nhưng một quyết định đưa ra trước khi sinh SQL không khai thác được.</p>
+
+<p>Phương pháp thứ tư là SQLens (Gong et al., NeurIPS 2025), phương pháp gần nhất về ý tưởng vì cũng dùng tín hiệu từ DB để phát hiện và sửa lỗi ngữ nghĩa. Bản cài lại theo mô tả trong paper gồm 9 tín hiệu từ DB, 5 tín hiệu từ LLM (gộp trong một lần gọi), một label model sinh huấn luyện không cần nhãn để gộp tín hiệu, và vòng sửa gồm Error Selector, Error Fixer và SQL Auditor (tối đa 2 vòng). SQL gốc là candidate của flash, giống PlanGate; LLM dùng cho các bước của SQLens là flash hoặc pro.</p>
+
+<div class="tabwrap"><table>
+<thead><tr><th></th><th class="r">SQLens (flash)</th><th class="r">SQLens (pro)</th><th class="r">PlanGate</th></tr></thead>
+<tbody>
+<tr><td>AUROC phát hiện lỗi</td><td class="r">0.666</td><td class="r">0.646</td><td class="r">≈0.72</td></tr>
+<tr><td>Tỉ lệ bị gắn cờ</td><td class="r">9.0%</td><td class="r">7.3%</td><td class="r">—</td></tr>
+<tr><td>EX cuối</td><td class="r">0.643</td><td class="r">0.633</td><td class="r">0.670–0.680</td></tr>
+<tr><td>Chi phí</td><td class="r">9.43</td><td class="r">13.22</td><td class="r">4.06–9.52</td></tr>
+<tr><td>p95 latency (s)</td><td class="r">72.8</td><td class="r">59.8</td><td class="r">34.1–45.3</td></tr>
+</tbody></table>
+<p class="caption">Bảng 7: So sánh với SQLens trên SQLite (n = 300).</p></div>
+
+<p>Ở mức chi phí không vượt SQLens, PlanGate cao hơn 3.0 điểm so với bản flash (CI [+0.0, +6.0]) và 4.7 điểm so với bản pro (CI [+1.7, +7.7]). Để đạt cùng accuracy, PlanGate cần ít hơn 66 đến 76% chi phí và có p95 latency thấp hơn 46 đến 55%. Khác biệt chính nằm ở cách dùng DB. SQLens chạy toàn bộ bộ tín hiệu cố định trên mọi truy vấn: riêng các tín hiệu phải quét dữ liệu đã khiến p95 thời gian DB lên tới 8.6 s, trong khi từng tín hiệu riêng lẻ chỉ có AUROC từ 0.50 đến 0.60. PlanGate chọn bằng chứng theo trạng thái và dùng kết quả thực thi để chọn giữa các candidate. Bộ phát hiện của SQLens chỉ gắn cờ 7 đến 9% số câu với recall khoảng 15%, nên phần sửa lỗi chỉ thêm khoảng 1 điểm so với flash gốc. Paper gốc báo mức tăng lớn hơn khi sửa cho các hệ thống nền yếu hơn, nên kết quả này phụ thuộc vào chất lượng SQL đầu vào.</p>
+
+<p>Bước tự kiểm chứng của AutoMix chỉ đạt AUROC 0.624 trên SQLite và 0.651 trên PostgreSQL, thấp hơn bộ chấm dùng bằng chứng DB (0.715). Ba lần kiểm chứng, mỗi lần chứa toàn bộ schema, khiến chi phí của AutoMix gấp khoảng 4 đến 5 lần flash, trong khi accuracy không vượt qwen. CHASE-SQL với selector không fine-tune đạt 0.637 và 0.620, thấp hơn ensemble bỏ phiếu theo thực thi, phù hợp với kết quả ở mục 5 rằng judge LLM gặp khó ở các cặp flash–qwen. Để đạt cùng accuracy với hai phương pháp này, PlanGate cần ít hơn 69 đến 88% chi phí và có p95 latency thấp hơn 27 đến 72%. Cần lưu ý đây là bản cài đặt lại, nên kết quả nhiều khả năng đánh giá thấp CHASE-SQL bản gốc với selector đã fine-tune.</p>
+
+<figure>
+<img src="planner_d_frontier_pg.png" alt="Accuracy theo chi phí và theo p95 latency trên PostgreSQL">
+<figcaption>Hình 1: Accuracy theo chi phí (trái) và theo p95 latency (phải) trên PostgreSQL. Đường màu cyan là planner hai pha đầy đủ.</figcaption>
+</figure>
+<figure>
+<img src="planner_d_frontier.png" alt="Accuracy theo chi phí và theo p95 latency trên SQLite">
+<figcaption>Hình 2: Kết quả tương ứng trên SQLite.</figcaption>
+</figure>
+
+<h2>8&nbsp;&nbsp;Hạn chế và hướng tiếp theo</h2>
+<p>Mức cải thiện hiện tại khoảng 2 đến 4 điểm, có ý nghĩa thống kê ở phần lớn ngân sách nhưng chưa lớn, trong khi oracle (khoảng 0.75) cho thấy vẫn còn nhiều dư địa. Các confidence cascade trong thí nghiệm dùng lại bộ chấm và bộ chọn của chính planner, nên chỉ được xem như ablation chứ chưa phải baseline độc lập; AutoMix, CHASE-SQL, EllieSQL và SQLens mới được cài đặt lại trong cùng setting (mục 7.1), trong đó EllieSQL và SQLens chỉ chạy trên SQLite; PRISM vẫn chưa được so sánh. Chi phí DB trên BIRD còn nhỏ, nên kết quả về việc optimizer định giá bằng chứng cần được kiểm tra lại trên dữ liệu được scale lên 10 đến 100 lần và dưới tải đồng thời. Khoảng 23 đến 25% số câu không action nào cứu được, và một phần trong đó có thể đến từ nhãn bị nhiễu của BIRD. Cuối cùng, mỗi cấu hình mới chỉ được chạy một lần, và proxy API chèn thêm token vào mỗi lần gọi nên tỉ lệ chi phí giữa các model bị nén lại.</p>
+<p>Các bước tiếp theo dự kiến gồm: đưa judge có differential probe vào planner như một action riêng để nhắm vào khoảng cách ở khâu chọn; chạy nhánh PostgreSQL trên dữ liệu đã scale; chạy các baseline ngoài một cách đầy đủ; và đánh giá cuối cùng trên toàn bộ 1534 câu của BIRD dev.</p>
+
+</div>
+</body>
+</html>

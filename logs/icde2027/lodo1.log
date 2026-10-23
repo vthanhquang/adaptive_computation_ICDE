@@ -1,0 +1,24 @@
+﻿== pg: train 257  cal 257  test 159
+  states: 19489 (76/question)
+  A fitted on 55420 candidate-states
+  P fitted on 10376 decisive pairs
+  V fitted on 19489 states (selection accuracy 0.599)
+  Q fitted on 37999 state-actions
+  G fitted on 553230 evidence-action targets
+  planner fitted in 316s, checkpoint 5a217224e5f59729
+  ran 190 configs on cal in 862s
+  ran 190 configs on test in 537s
+
+== DB price 1 u/s   (cheap_only test acc 0.522)
+  1.25x no_db 0.522/2.77/3ms | fixed_bund 0.528/2.80/33ms | optimizer_ 0.528/2.78/13ms | adaptive 0.535/3.63/19ms
+        adaptive - no_db +1.3 [+0.0,+3.1], fixed_bund +0.6 [-1.3,+3.1], optimizer_ +0.6 [-1.3,+3.1]
+  1.50x no_db 0.528/3.84/4ms | fixed_bund 0.528/2.80/33ms | optimizer_ 0.528/2.78/13ms | adaptive 0.535/3.63/19ms
+        adaptive - no_db +0.6 [+0.0,+1.9], fixed_bund +0.6 [-1.3,+3.1], optimizer_ +0.6 [-1.3,+3.1]
+  2.00x no_db 0.528/3.84/4ms | fixed_bund 0.535/4.96/51ms | optimizer_ 0.535/5.11/41ms | adaptive 0.528/4.66/25ms
+        adaptive - no_db +0.0 [-1.9,+1.9], fixed_bund -0.6 [-2.5,+1.3], optimizer_ -0.6 [-2.5,+1.3]
+  3.00x no_db 0.541/9.07/7ms | fixed_bund 0.560/9.81/64ms | optimizer_ 0.535/5.11/41ms | adaptive 0.541/8.79/37ms
+        adaptive - no_db +0.0 [-3.1,+3.1], fixed_bund -1.9 [-4.4,+0.0], optimizer_ +0.6 [-1.9,+3.1]
+  4.00x no_db 0.547/11.63/6ms | fixed_bund 0.560/9.81/64ms | optimizer_ 0.535/5.11/41ms | adaptive 0.541/8.79/37ms
+        adaptive - no_db -0.6 [-2.5,+1.3], fixed_bund -1.9 [-4.4,+0.0], optimizer_ +0.6 [-1.9,+3.1]
+
+total 1715s

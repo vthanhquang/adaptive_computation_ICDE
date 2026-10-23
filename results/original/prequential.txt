@@ -1,0 +1,55 @@
+﻿== Experiment F (sqlite, n=300, block=30, seeds=5)
+  seed 0 static                   logged=  0 explored=  0  acc=0.647 cost= 3.96  last third acc=0.640 cost= 3.78
+  seed 0 gold-full                logged=300 explored=  0  acc=0.670 cost= 6.02  last third acc=0.680 cost= 5.01
+  seed 0 explore+self eps=0.1     logged= 57 explored= 57  acc=0.657 cost= 8.76  last third acc=0.660 cost= 7.16
+  seed 0 logs, gold               logged=270 explored=  0  acc=0.643 cost= 6.98  last third acc=0.670 cost= 6.47
+  seed 0 logs, self               logged= 38 explored=  0  acc=0.637 cost= 3.95  last third acc=0.650 cost= 3.43
+  seed 0 boot30+logs, gold        logged=270 explored= 30  acc=0.663 cost= 9.36  last third acc=0.670 cost= 6.98
+  seed 0 boot30+logs, self        logged= 76 explored= 30  acc=0.647 cost= 6.52  last third acc=0.650 cost= 3.77
+  seed 1 static                   logged=  0 explored=  0  acc=0.647 cost= 3.96  last third acc=0.650 cost= 3.77
+  seed 1 gold-full                logged=300 explored=  0  acc=0.657 cost= 5.50  last third acc=0.670 cost= 4.81
+  seed 1 explore+self eps=0.1     logged= 55 explored= 55  acc=0.643 cost= 8.80  last third acc=0.660 cost= 6.03
+  seed 1 logs, gold               logged=270 explored=  0  acc=0.620 cost= 7.03  last third acc=0.640 cost= 7.26
+  seed 1 logs, self               logged= 39 explored=  0  acc=0.637 cost= 3.79  last third acc=0.650 cost= 3.40
+  seed 1 boot30+logs, gold        logged=270 explored= 30  acc=0.640 cost= 9.44  last third acc=0.610 cost= 7.07
+  seed 1 boot30+logs, self        logged= 95 explored= 30  acc=0.647 cost= 6.94  last third acc=0.640 cost= 3.88
+  seed 2 static                   logged=  0 explored=  0  acc=0.647 cost= 3.96  last third acc=0.720 cost= 4.34
+  seed 2 gold-full                logged=300 explored=  0  acc=0.663 cost= 5.87  last third acc=0.750 cost= 6.18
+  seed 2 explore+self eps=0.1     logged= 58 explored= 58  acc=0.650 cost= 8.83  last third acc=0.720 cost= 5.90
+  seed 2 logs, gold               logged=270 explored=  0  acc=0.633 cost= 6.76  last third acc=0.690 cost= 8.35
+  seed 2 logs, self               logged= 32 explored=  0  acc=0.630 cost= 3.71  last third acc=0.710 cost= 3.89
+  seed 2 boot30+logs, gold        logged=270 explored= 30  acc=0.647 cost= 9.58  last third acc=0.700 cost= 8.02
+  seed 2 boot30+logs, self        logged= 59 explored= 30  acc=0.637 cost= 6.25  last third acc=0.710 cost= 3.97
+  seed 3 static                   logged=  0 explored=  0  acc=0.647 cost= 3.96  last third acc=0.650 cost= 3.78
+  seed 3 gold-full                logged=300 explored=  0  acc=0.660 cost= 6.20  last third acc=0.680 cost= 5.96
+  seed 3 explore+self eps=0.1     logged= 60 explored= 60  acc=0.640 cost= 8.62  last third acc=0.640 cost= 7.32
+  seed 3 logs, gold               logged=270 explored=  0  acc=0.647 cost= 6.75  last third acc=0.670 cost= 7.23
+  seed 3 logs, self               logged= 30 explored=  0  acc=0.640 cost= 3.71  last third acc=0.650 cost= 3.45
+  seed 3 boot30+logs, gold        logged=270 explored= 30  acc=0.653 cost= 8.77  last third acc=0.640 cost= 6.19
+  seed 3 boot30+logs, self        logged= 58 explored= 30  acc=0.637 cost= 6.04  last third acc=0.640 cost= 3.40
+  seed 4 static                   logged=  0 explored=  0  acc=0.647 cost= 3.96  last third acc=0.640 cost= 3.91
+  seed 4 gold-full                logged=300 explored=  0  acc=0.660 cost= 5.89  last third acc=0.670 cost= 5.77
+  seed 4 explore+self eps=0.1     logged= 58 explored= 58  acc=0.630 cost= 8.30  last third acc=0.640 cost= 6.78
+  seed 4 logs, gold               logged=270 explored=  0  acc=0.657 cost= 6.23  last third acc=0.650 cost= 7.28
+  seed 4 logs, self               logged= 28 explored=  0  acc=0.630 cost= 3.75  last third acc=0.610 cost= 3.47
+  seed 4 boot30+logs, gold        logged=270 explored= 30  acc=0.650 cost= 8.94  last third acc=0.640 cost= 6.66
+  seed 4 boot30+logs, self        logged= 64 explored= 30  acc=0.627 cost= 6.32  last third acc=0.610 cost= 3.75
+
+  self-label agreement with gold (candidate level): 0.732
+
+== Mean over seeds at default point lam=0.05, tau=0.5  (offline cross-fit: acc 0.670, cost 5.85)
+  regime                      acc   cost | last1/3 acc   cost | L1 sql hit vp hit DB saved
+  static                    0.647   3.96 |       0.660   3.92 |       0.01   0.31       5%
+  gold-full                 0.662   5.90 |       0.690   5.54 |       0.06   0.45       9%
+  explore+self eps=0.1      0.644   8.66 |       0.664   6.64 |       0.20   0.64      16%
+  logs, gold                0.640   6.75 |       0.664   7.32 |       0.10   0.51      11%
+  logs, self                0.635   3.78 |       0.654   3.53 |       0.02   0.29       3%
+  boot30+logs, gold         0.651   9.22 |       0.652   6.98 |       0.17   0.60      17%
+  boot30+logs, self         0.639   6.41 |       0.650   3.75 |       0.14   0.51      10%
+
+== Last third of the stream: best accuracy within a cost budget (grid of (lam,tau) points)
+  1.25x ( 3.79):  static=  -    gold-full=  -    explore+self eps=0.1=  -    logs, gold=  -    logs, self=0.654  boot30+logs, gold=  -    boot30+logs, self=0.650
+  1.50x ( 4.55):  static=0.660  gold-full=0.676  explore+self eps=0.1=  -    logs, gold=  -    logs, self=0.654  boot30+logs, gold=  -    boot30+logs, self=0.650
+  2.00x ( 6.06):  static=0.660  gold-full=0.690  explore+self eps=0.1=  -    logs, gold=  -    logs, self=0.654  boot30+logs, gold=  -    boot30+logs, self=0.650
+  3.00x ( 9.09):  static=0.660  gold-full=0.700  explore+self eps=0.1=0.668  logs, gold=0.664  logs, self=0.654  boot30+logs, gold=0.652  boot30+logs, self=0.650
+saved D:\project_code\github\plangate_prototype_v2\results\prequential.png

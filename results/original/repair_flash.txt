@@ -1,0 +1,17 @@
+﻿base=flash_direct strong=qwen_max_direct: 300 questions, 23 flagged by DB evidence (7.7%)
+trigger counts: {'empty_result': 13, 'timeout': 1, 'missing_value': 11, 'parse_bind_error': 5}
+base accuracy on flagged: 0.043   on unflagged: 0.679
+
+next action on the 23 flagged questions:  acc   extra cost/flagged q
+  keep           0.043    0.00
+  escalate       0.261   10.75
+  repair_blind   0.217    3.10
+  repair_db      0.304    3.25
+  repair changed SQL: db=22, blind=14
+
+end-to-end over all questions (acc, cost/q):
+  flash_direct only          0.630  3.03
+  qwen_max_direct only   0.670  9.74
+  flash_direct + DB trigger -> escalate      0.647  3.96
+  flash_direct + DB trigger -> repair_blind  0.643  3.37
+  flash_direct + DB trigger -> repair_db     0.650  3.38

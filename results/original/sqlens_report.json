@@ -1,0 +1,14 @@
+{
+ "SQLens separate-prompts (flash)": {
+  "auroc": 0.7187902187902189,
+  "flag_rate": 0.13,
+  "precision": 0.6666666666666666,
+  "acc": 0.6366666666666667
+ },
+ "SQLens separate-prompts (pro)": {
+  "auroc": 0.7239620572953906,
+  "flag_rate": 0.12,
+  "precision": 0.6944444444444444,
+  "acc": 0.6266666666666667
+ }
+}

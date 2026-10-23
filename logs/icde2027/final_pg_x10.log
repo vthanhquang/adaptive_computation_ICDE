@@ -1,0 +1,24 @@
+﻿== pg: train 417  cal 417  test 498
+  states: 31609 (76/question)
+  A fitted on 89969 candidate-states
+  P fitted on 17572 decisive pairs
+  V fitted on 31609 states (selection accuracy 0.590)
+  Q fitted on 61557 state-actions
+  G fitted on 897210 evidence-action targets
+  planner fitted in 5326s, checkpoint 7a1eb45337539d66
+  ran 212 configs on cal in 4099s
+  ran 212 configs on test in 2841s
+
+== DB price 1 u/s   (cheap_only test acc 0.592)
+  1.25x no_db 0.600/2.95/6ms | fixed_bund 0.612/3.36/357ms | optimizer_ 0.612/3.22/235ms | rule_selec 0.612/3.36/354ms | adaptive 0.604/2.97/22ms
+        adaptive - no_db +0.4 [+0.0,+1.0], fixed_bund -0.8 [-1.6,-0.2], optimizer_ -0.8 [-1.6,-0.2], rule_selec -0.8 [-1.6,-0.2]
+  1.50x no_db 0.600/2.95/6ms | fixed_bund 0.612/3.36/357ms | optimizer_ 0.612/3.22/235ms | rule_selec 0.612/3.36/354ms | adaptive 0.618/3.70/205ms
+        adaptive - no_db +1.8 [+0.8,+3.0], fixed_bund +0.6 [-0.4,+1.6], optimizer_ +0.6 [-0.4,+1.6], rule_selec +0.6 [-0.4,+1.6]
+  2.00x no_db 0.600/2.95/6ms | fixed_bund 0.612/3.36/357ms | optimizer_ 0.612/3.22/235ms | rule_selec 0.620/3.93/396ms | adaptive 0.618/3.70/205ms
+        adaptive - no_db +1.8 [+0.8,+3.0], fixed_bund +0.6 [-0.4,+1.6], optimizer_ +0.6 [-0.4,+1.6], rule_selec -0.2 [-1.0,+0.4]
+  3.00x no_db 0.600/2.95/6ms | fixed_bund 0.612/3.36/357ms | optimizer_ 0.612/3.22/235ms | rule_selec 0.620/3.93/396ms | adaptive 0.618/3.70/205ms
+        adaptive - no_db +1.8 [+0.8,+3.0], fixed_bund +0.6 [-0.4,+1.6], optimizer_ +0.6 [-0.4,+1.6], rule_selec -0.2 [-1.0,+0.4]
+  4.00x no_db 0.600/2.95/6ms | fixed_bund 0.620/8.80/804ms | optimizer_ 0.618/8.55/501ms | rule_selec 0.620/3.93/396ms | adaptive 0.618/3.70/205ms
+        adaptive - no_db +1.8 [+0.8,+3.0], fixed_bund -0.2 [-2.2,+1.8], optimizer_ +0.0 [-2.0,+2.0], rule_selec -0.2 [-1.0,+0.4]
+
+total 12268s

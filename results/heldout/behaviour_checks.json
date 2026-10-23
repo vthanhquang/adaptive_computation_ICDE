@@ -1,0 +1,30 @@
+{
+ "T1_hidden_obs_invariance": "60/60",
+ "T2_label_invariance": "60/60",
+ "T3_accept_without_optional_probe": 37,
+ "T4_first_probe_kinds": [
+  "EXEC_BOUNDED",
+  "VALUE_PROBE"
+ ],
+ "T5_trace_costs_logged": true,
+ "T5_fixed_bundle_acquires_all": true,
+ "pass": true,
+ "example_skip": {
+  "q": 461,
+  "correct": 1,
+  "cost": 2.986677700003609,
+  "db_ms": 1.1777000036090612,
+  "wall": 4396.274199942127,
+  "llm_cost": 2.9855,
+  "final": "c0",
+  "n_llm": 1,
+  "n_vp": 0,
+  "n_ex": 0,
+  "trace": [
+   {
+    "action": "ACCEPT",
+    "V": 0.15
+   }
+  ]
+ }
+}

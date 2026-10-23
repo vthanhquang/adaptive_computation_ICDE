@@ -1,0 +1,7 @@
+﻿[sqlite] n=300; AutoMix self-verification AUROC on c0 = 0.624; mean confidence 0.87
+  policy                                          acc   cost p95 lat s  LLM/q
+  AutoMix (theta=0.30)                          0.647  12.91      48.1   4.04
+  AutoMix (theta=0.60)                          0.650  13.76      56.2   4.11
+  AutoMix (theta=0.90)                          0.667  15.11      62.6   4.24
+  CHASE-SQL selection (flash, pro, qwen)        0.637  21.42      44.5   3.44
+  CHASE-SQL selection (flash x2, pro, qwen)     0.637  25.57      54.0   4.62

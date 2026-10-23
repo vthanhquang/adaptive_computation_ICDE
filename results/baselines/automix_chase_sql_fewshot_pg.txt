@@ -1,0 +1,7 @@
+[pg] n=500; AutoMix self-verification AUROC on c0 = 0.684; mean confidence 0.85
+  policy                                          acc   cost p95 lat s  LLM/q
+  AutoMix few-shot (theta=0.30)                 0.598  13.64      47.0   4.04
+  AutoMix few-shot (theta=0.60)                 0.616  14.43      49.3   4.11
+  AutoMix few-shot (theta=0.90)                 0.634  16.39      55.2   4.30
+  CHASE-SQL selection few-shot (flash, pro, qwen)  0.620  21.79      42.7   3.51
+  CHASE-SQL selection few-shot (flash x2, pro, qwen)  0.628  26.66      45.1   4.79

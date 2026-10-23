@@ -1,0 +1,55 @@
+﻿== Online learning (pg, n=500, block=30, seeds=5)
+  seed 0 static                   logged=  0 explored=  0  acc=0.612 cost= 3.69  last third acc=0.596 cost= 3.63
+  seed 0 gold-full                logged=500 explored=  0  acc=0.634 cost= 6.09  last third acc=0.627 cost= 6.10
+  seed 0 explore+self eps=0.1     logged= 77 explored= 77  acc=0.618 cost= 6.86  last third acc=0.572 cost= 5.88
+  seed 0 logs, gold               logged=480 explored=  0  acc=0.620 cost= 7.27  last third acc=0.602 cost= 8.05
+  seed 0 logs, self               logged= 68 explored=  0  acc=0.594 cost= 3.63  last third acc=0.566 cost= 3.50
+  seed 0 boot30+logs, gold        logged=480 explored= 30  acc=0.646 cost= 8.67  last third acc=0.639 cost= 8.38
+  seed 0 boot30+logs, self        logged=110 explored= 30  acc=0.610 cost= 4.99  last third acc=0.578 cost= 3.63
+  seed 1 static                   logged=  0 explored=  0  acc=0.612 cost= 3.69  last third acc=0.657 cost= 3.44
+  seed 1 gold-full                logged=500 explored=  0  acc=0.638 cost= 5.73  last third acc=0.717 cost= 5.70
+  seed 1 explore+self eps=0.1     logged= 72 explored= 72  acc=0.612 cost= 6.41  last third acc=0.663 cost= 4.42
+  seed 1 logs, gold               logged=480 explored=  0  acc=0.626 cost= 7.25  last third acc=0.717 cost= 7.54
+  seed 1 logs, self               logged= 56 explored=  0  acc=0.600 cost= 3.49  last third acc=0.657 cost= 3.47
+  seed 1 boot30+logs, gold        logged=480 explored= 30  acc=0.622 cost= 8.97  last third acc=0.681 cost= 7.69
+  seed 1 boot30+logs, self        logged= 79 explored= 30  acc=0.606 cost= 4.87  last third acc=0.657 cost= 3.64
+  seed 2 static                   logged=  0 explored=  0  acc=0.612 cost= 3.69  last third acc=0.590 cost= 3.64
+  seed 2 gold-full                logged=500 explored=  0  acc=0.630 cost= 6.18  last third acc=0.620 cost= 5.86
+  seed 2 explore+self eps=0.1     logged= 78 explored= 78  acc=0.608 cost= 7.05  last third acc=0.578 cost= 5.08
+  seed 2 logs, gold               logged=480 explored=  0  acc=0.628 cost= 7.28  last third acc=0.614 cost= 7.22
+  seed 2 logs, self               logged= 78 explored=  0  acc=0.600 cost= 3.83  last third acc=0.584 cost= 3.73
+  seed 2 boot30+logs, gold        logged=480 explored= 30  acc=0.636 cost= 8.32  last third acc=0.614 cost= 7.25
+  seed 2 boot30+logs, self        logged=119 explored= 30  acc=0.602 cost= 5.36  last third acc=0.590 cost= 4.01
+  seed 3 static                   logged=  0 explored=  0  acc=0.612 cost= 3.69  last third acc=0.602 cost= 3.53
+  seed 3 gold-full                logged=500 explored=  0  acc=0.630 cost= 5.94  last third acc=0.620 cost= 5.70
+  seed 3 explore+self eps=0.1     logged= 76 explored= 76  acc=0.620 cost= 7.01  last third acc=0.627 cost= 6.02
+  seed 3 logs, gold               logged=480 explored=  0  acc=0.636 cost= 7.30  last third acc=0.633 cost= 7.62
+  seed 3 logs, self               logged= 52 explored=  0  acc=0.592 cost= 3.52  last third acc=0.596 cost= 3.58
+  seed 3 boot30+logs, gold        logged=480 explored= 30  acc=0.642 cost= 8.45  last third acc=0.633 cost= 7.46
+  seed 3 boot30+logs, self        logged=103 explored= 30  acc=0.604 cost= 4.88  last third acc=0.596 cost= 3.81
+  seed 4 static                   logged=  0 explored=  0  acc=0.612 cost= 3.69  last third acc=0.669 cost= 3.50
+  seed 4 gold-full                logged=500 explored=  0  acc=0.628 cost= 6.12  last third acc=0.675 cost= 5.97
+  seed 4 explore+self eps=0.1     logged= 75 explored= 75  acc=0.608 cost= 6.49  last third acc=0.657 cost= 4.66
+  seed 4 logs, gold               logged=480 explored=  0  acc=0.622 cost= 8.17  last third acc=0.669 cost= 8.47
+  seed 4 logs, self               logged= 67 explored=  0  acc=0.594 cost= 3.59  last third acc=0.657 cost= 3.63
+  seed 4 boot30+logs, gold        logged=480 explored= 30  acc=0.628 cost= 8.66  last third acc=0.663 cost= 7.36
+  seed 4 boot30+logs, self        logged=100 explored= 30  acc=0.608 cost= 4.99  last third acc=0.669 cost= 3.84
+
+  self-label agreement with gold (candidate level): 0.721
+
+== Mean over seeds at default point lam=0.05, tau=0.5  (offline cross-fit: acc 0.660, cost 6.57)
+  regime                      acc   cost | last1/3 acc   cost | L1 sql hit vp hit DB saved
+  static                    0.612   3.69 |       0.623   3.55 |       0.01   0.44       6%
+  gold-full                 0.632   6.01 |       0.652   5.87 |       0.06   0.57      11%
+  explore+self eps=0.1      0.613   6.76 |       0.619   5.21 |       0.15   0.66      21%
+  logs, gold                0.626   7.45 |       0.647   7.78 |       0.11   0.61      17%
+  logs, self                0.596   3.61 |       0.612   3.58 |       0.03   0.43       7%
+  boot30+logs, gold         0.635   8.62 |       0.646   7.63 |       0.13   0.65      18%
+  boot30+logs, self         0.606   5.02 |       0.618   3.79 |       0.08   0.56      13%
+
+== Last third of the stream: best accuracy within a cost budget (grid of (lam,tau) points)
+  1.25x ( 3.62):  static=0.623  gold-full=  -    explore+self eps=0.1=  -    logs, gold=  -    logs, self=0.612  boot30+logs, gold=  -    boot30+logs, self=  -  
+  1.50x ( 4.34):  static=0.623  gold-full=  -    explore+self eps=0.1=  -    logs, gold=  -    logs, self=0.612  boot30+logs, gold=  -    boot30+logs, self=0.618
+  2.00x ( 5.79):  static=0.623  gold-full=0.655  explore+self eps=0.1=0.620  logs, gold=  -    logs, self=0.612  boot30+logs, gold=  -    boot30+logs, self=0.618
+  3.00x ( 8.69):  static=0.623  gold-full=0.676  explore+self eps=0.1=0.620  logs, gold=0.647  logs, self=0.612  boot30+logs, gold=0.646  boot30+logs, self=0.618
+saved results/crossfit/online_learning_pg.png

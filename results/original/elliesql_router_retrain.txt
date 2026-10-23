@@ -1,0 +1,27 @@
+300 questions; label dist [178, 24, 98]; router input tokens median 77, max 130 (truncated at 160)
+  fold 0 epoch 0 loss 7.120  (218s)
+  fold 0 epoch 1 loss 0.966  (411s)
+  fold 0 epoch 2 loss 0.661  (605s)
+  fold 1 epoch 0 loss 7.233  (852s)
+  fold 1 epoch 1 loss 0.929  (1057s)
+  fold 1 epoch 2 loss 0.643  (1251s)
+  fold 2 epoch 0 loss 7.818  (1477s)
+  fold 2 epoch 1 loss 0.845  (1678s)
+  fold 2 epoch 2 loss 0.500  (1891s)
+  fold 3 epoch 0 loss 11.757  (2114s)
+  fold 3 epoch 1 loss 0.755  (2277s)
+  fold 3 epoch 2 loss 0.336  (2440s)
+  fold 4 epoch 0 loss 7.341  (2630s)
+  fold 4 epoch 1 loss 0.731  (2789s)
+  fold 4 epoch 2 loss 0.388  (2948s)
+
+label accuracy: released router 0.507 | in-domain router 0.563
+AUROC P(not basic) for 'basic fails': released 0.613 | in-domain 0.592
+
+  policy                                     EX   cost  p95 s
+  EllieSQL (in-domain router)             0.637   6.42   53.2
+  EllieSQL (in-domain router, t=0.3)      0.630   6.22   49.3
+  EllieSQL (in-domain router, t=0.5)      0.637   6.57   53.2
+  EllieSQL (in-domain router, t=0.7)      0.643   6.99   54.8
+  EllieSQL (in-domain router, t=0.9)      0.650   7.92   56.7
+appended to D:\project_code\github\plangate_prototype_v2\results\paper_baselines.json

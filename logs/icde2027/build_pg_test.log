@@ -1,0 +1,22 @@
+﻿pg_test: 500 questions, 0 done, 500 to build
+  25/500  30s  errors=0
+  50/500  57s  errors=0
+  75/500  76s  errors=0
+  100/500  107s  errors=0
+  125/500  130s  errors=0
+  150/500  161s  errors=0
+  175/500  179s  errors=0
+  200/500  210s  errors=0
+  225/500  235s  errors=0
+  250/500  270s  errors=0
+  275/500  289s  errors=0
+  300/500  309s  errors=0
+  325/500  352s  errors=0
+  350/500  395s  errors=0
+  375/500  431s  errors=0
+  400/500  470s  errors=0
+  425/500  496s  errors=0
+  450/500  523s  errors=0
+  475/500  568s  errors=0
+  500/500  634s  errors=0
+done 500, errors 0, 634s

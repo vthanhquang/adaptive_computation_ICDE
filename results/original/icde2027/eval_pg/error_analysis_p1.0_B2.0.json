@@ -1,0 +1,172 @@
+{
+ "no_db": {
+  "join_agg": {
+   "n": 454.0,
+   "ex_c0": 0.0,
+   "correct": 0.6057268722466961
+  },
+  "c0_correct": {
+   "n": 295.0,
+   "no_optional_probe": 1.0,
+   "regression": 0.006779661016949152,
+   "extra_llm": 0.19322033898305085
+  },
+  "literal": {
+   "n": 12.0,
+   "vp_bought": 0.0,
+   "value_fix_used": 0.0,
+   "correct": 0.25
+  },
+  "expensive": {
+   "n": 29.0,
+   "ex_c0": 0.0,
+   "db_ms": 6.636662069499364,
+   "correct": 0.41379310344827586
+  },
+  "truncated": {
+   "n": 12.0,
+   "correct": 0.75
+  },
+  "empty_ok": {
+   "n": 2.0,
+   "replaced": 0.0,
+   "regression": 0.0
+  }
+ },
+ "fixed_bundle": {
+  "join_agg": {
+   "n": 454.0,
+   "ex_c0": 1.0,
+   "correct": 0.6211453744493393
+  },
+  "c0_correct": {
+   "n": 295.0,
+   "no_optional_probe": 0.0,
+   "regression": 0.010169491525423728,
+   "extra_llm": 0.19661016949152543
+  },
+  "literal": {
+   "n": 12.0,
+   "vp_bought": 1.0,
+   "value_fix_used": 0.4166666666666667,
+   "correct": 0.8333333333333334
+  },
+  "expensive": {
+   "n": 29.0,
+   "ex_c0": 1.0,
+   "db_ms": 146.18398620674773,
+   "correct": 0.4482758620689655
+  },
+  "truncated": {
+   "n": 12.0,
+   "correct": 0.75
+  },
+  "empty_ok": {
+   "n": 2.0,
+   "replaced": 0.5,
+   "regression": 0.0
+  }
+ },
+ "optimizer_gated": {
+  "join_agg": {
+   "n": 454.0,
+   "ex_c0": 0.8083700440528634,
+   "correct": 0.6277533039647577
+  },
+  "c0_correct": {
+   "n": 295.0,
+   "no_optional_probe": 0.0,
+   "regression": 0.013559322033898305,
+   "extra_llm": 0.41694915254237286
+  },
+  "literal": {
+   "n": 12.0,
+   "vp_bought": 1.0,
+   "value_fix_used": 0.4166666666666667,
+   "correct": 0.8333333333333334
+  },
+  "expensive": {
+   "n": 29.0,
+   "ex_c0": 0.034482758620689655,
+   "db_ms": 13.548386202932432,
+   "correct": 0.41379310344827586
+  },
+  "truncated": {
+   "n": 12.0,
+   "correct": 0.75
+  },
+  "empty_ok": {
+   "n": 2.0,
+   "replaced": 0.5,
+   "regression": 0.0
+  }
+ },
+ "rule_selective": {
+  "join_agg": {
+   "n": 454.0,
+   "ex_c0": 0.9911894273127754,
+   "correct": 0.6189427312775331
+  },
+  "c0_correct": {
+   "n": 295.0,
+   "no_optional_probe": 0.0,
+   "regression": 0.010169491525423728,
+   "extra_llm": 0.19322033898305085
+  },
+  "literal": {
+   "n": 12.0,
+   "vp_bought": 1.0,
+   "value_fix_used": 0.3333333333333333,
+   "correct": 0.75
+  },
+  "expensive": {
+   "n": 29.0,
+   "ex_c0": 1.0,
+   "db_ms": 146.01065172685375,
+   "correct": 0.4482758620689655
+  },
+  "truncated": {
+   "n": 12.0,
+   "correct": 0.75
+  },
+  "empty_ok": {
+   "n": 2.0,
+   "replaced": 0.0,
+   "regression": 0.0
+  }
+ },
+ "adaptive": {
+  "join_agg": {
+   "n": 454.0,
+   "ex_c0": 0.6894273127753304,
+   "correct": 0.6167400881057269
+  },
+  "c0_correct": {
+   "n": 295.0,
+   "no_optional_probe": 0.17288135593220338,
+   "regression": 0.020338983050847456,
+   "extra_llm": 0.3898305084745763
+  },
+  "literal": {
+   "n": 12.0,
+   "vp_bought": 0.75,
+   "value_fix_used": 0.3333333333333333,
+   "correct": 0.6666666666666666
+  },
+  "expensive": {
+   "n": 29.0,
+   "ex_c0": 0.6551724137931034,
+   "db_ms": 116.20081033846685,
+   "correct": 0.3793103448275862
+  },
+  "truncated": {
+   "n": 12.0,
+   "correct": 0.6666666666666666
+  },
+  "empty_ok": {
+   "n": 2.0,
+   "replaced": 0.0,
+   "regression": 0.0
+  }
+ }
+}

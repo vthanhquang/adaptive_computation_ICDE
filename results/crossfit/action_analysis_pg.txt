@@ -1,0 +1,58 @@
+﻿PostgreSQL arm: 500 mini-dev questions; c0=flash acc=0.592; SWITCH_PRO=0.600, SWITCH_QWEN=0.640
+
+== ORACLE: cheapest successful action after the first candidate (flash_direct)
+   (actions tried in order of mean added cost: ACCEPT=0.00, VALUE_FIX (DB only)=0.00, REPAIR_BLIND=0.00, RESAMPLE_1=2.88, REPAIR_DB=3.04, SWITCH_PRO=5.69, SWITCH_QWEN=9.64)
+   59.2%  ACCEPT
+    1.0%  VALUE_FIX (DB only)
+    0.0%  REPAIR_BLIND
+    5.8%  RESAMPLE_1
+    2.8%  REPAIR_DB
+    2.6%  SWITCH_PRO
+    3.6%  SWITCH_QWEN
+    0.0%  needs >=2 extra candidates
+   25.0%  none succeeds
+
+  Non-exclusive rescue rate among the 204 wrong first candidates:
+    VALUE_FIX       5  (2.5%)
+    REPAIR_DB      27  (13.2%)
+    REPAIR_BLIND    0  (0.0%)
+    RESAMPLE_1     33  (16.2%)
+    RESAMPLE_2      0  (0.0%)
+    SWITCH_PRO     34  (16.7%)
+    SWITCH_QWEN    53  (26.0%)
+
+  Rescue rate by state region (wrong first candidates):
+    DB-flagged   n= 37  VALUE_FIX=0.14  REPAIR_DB=0.38  REPAIR_BLIND=0.00  RESAMPLE_1=0.30  SWITCH_PRO=0.22  SWITCH_QWEN=0.27
+    not flagged  n=167  VALUE_FIX=0.00  REPAIR_DB=0.08  REPAIR_BLIND=0.00  RESAMPLE_1=0.13  SWITCH_PRO=0.16  SWITCH_QWEN=0.26
+
+== EXP A: marginal decision value of each action  (target: is first candidate correct?)
+   base P1 (question+schema+candidate SQL) AUROC = 0.698; LogisticRegression, 10x5-fold OOF
+  action                  dAUROC            95% CI  applic.  fires   med ms   p95 ms   cost
+  PARSE_BIND              +0.022 [+0.010,+0.036]   100.0%   2.8%      2.1      7.8   0.00
+  VALUE_PROBE             +0.016 [-0.001,+0.035]    74.4%   2.4%      2.1     11.1   0.00
+  EXPLAIN                 +0.011 [-0.008,+0.030]    97.2%   0.0%      0.6      1.0   0.00
+  EXEC_BOUNDED            +0.058 [+0.031,+0.086]   100.0%   7.0%      2.3     78.9   0.02
+  ALL_DB_PROBES           +0.060 [+0.030,+0.090]   100.0%   8.0%      8.4     95.7   0.03
+  +LLM RESAMPLE_SQL       +0.004 [-0.005,+0.014]   100.0%  81.0%   4660.6  12709.5   2.88
+  +LLM RESAMPLE_EXEC      +0.068 [+0.040,+0.098]   100.0%  30.0%   4661.8  12720.4   2.88
+  +LLM OTHER_MODEL_EXEC   +0.074 [+0.042,+0.111]   100.0%  30.0%   2951.1  14462.3   5.69
+  +LLM REPAIR_CONFIRMS    +0.026 [+0.005,+0.048]   100.0%  30.8%   5032.5  17841.1   3.04
+  ALL_DB + RESAMPLE_EXEC  +0.089 [+0.053,+0.127]   100.0%   0.0%   4666.0  12726.6   2.88
+
+== P2: optimizer as the price of evidence  (2446 executed candidates)
+  EXPLAIN time: median 0.59 ms, p95 0.98 ms
+  execution time: median 2.4 ms, p95 75.7 ms, max 577 ms; top 5% of candidates = 34% of all execution time
+  Spearman(est. cost, exec time) = 0.962
+  AUROC(est. cost -> exec > 100 ms) = 0.924   (positives 1.8%)
+  AUROC(est. cost -> exec > 500 ms) = 0.999   (positives 0.1%)
+
+== P3: price-aware evidence acquisition on the first candidate
+  policy                              AUROC  exec%  DB ms/q  p95 DB ms  max DB ms
+  no execution (cheap probes only)    0.741   0.0%      8.1       19.1        285
+  always execute                      0.758 100.0%     25.3       95.7        583
+  execute if est.cost <= p50 (456)    0.746  50.0%      8.6       20.1        285
+  execute if est.cost <= p75 (4729)   0.751  75.0%     10.0       22.8        285
+  execute if est.cost <= p90 (12712)  0.754  90.0%     16.9       65.6        338
+  execute if est.cost <= p95 (16724)  0.759  95.0%     19.9       74.6        338
+  random 75% execute (control)        0.749  75.0%     21.9       87.8        583
+  random 90% execute (control)        0.756  90.0%     23.6       90.7        583

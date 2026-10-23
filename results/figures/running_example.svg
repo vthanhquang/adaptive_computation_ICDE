@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="252pt" height="291.6pt" viewBox="0 0 252 291.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-09T14:51:03.052002</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 291.6 
+L 252 291.6 
+L 252 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 5.4432 37.807448 
+L 246.5568 37.807448 
+Q 249.5808 37.807448 249.5808 34.790897 
+L 249.5808 5.429793 
+Q 249.5808 2.413241 246.5568 2.413241 
+L 5.4432 2.413241 
+Q 2.4192 2.413241 2.4192 5.429793 
+L 2.4192 34.790897 
+Q 2.4192 37.807448 5.4432 37.807448 
+z
+" clip-path="url(#pc9c4a93893)" style="fill: #f4f4f4"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 7.4592 85.066759 
+L 244.5408 85.066759 
+Q 247.5648 85.066759 247.5648 82.050207 
+L 247.5648 44.644966 
+Q 247.5648 41.628414 244.5408 41.628414 
+L 7.4592 41.628414 
+Q 4.4352 41.628414 4.4352 44.644966 
+L 4.4352 82.050207 
+Q 4.4352 85.066759 7.4592 85.066759 
+z
+" clip-path="url(#pc9c4a93893)" style="fill: #ffffff; stroke: #222222; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 7.4592 132.326069 
+L 244.5408 132.326069 
+Q 247.5648 132.326069 247.5648 129.309517 
+L 247.5648 90.898759 
+Q 247.5648 87.882207 244.5408 87.882207 
+L 7.4592 87.882207 
+Q 4.4352 87.882207 4.4352 90.898759 
+L 4.4352 129.309517 
+Q 4.4352 132.326069 7.4592 132.326069 
+z
+" clip-path="url(#pc9c4a93893)" style="fill: #ffffff; stroke: #1f4e9c; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 7.4592 166.513655 
+L 244.5408 166.513655 
+Q 247.5648 166.513655 247.5648 163.497103 
+L 247.5648 143.185655 
+Q 247.5648 140.169103 244.5408 140.169103 
+L 7.4592 140.169103 
+Q 4.4352 140.169103 4.4352 143.185655 
+L 4.4352 163.497103 
+Q 4.4352 166.513655 7.4592 166.513655 
+z
+" clip-path="url(#pc9c4a93893)" style="fill: #ffffff; stroke: #a3281e; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 7.4592 213.772966 
+L 244.5408 213.772966 
+Q 247.5648 213.772966 247.5648 210.756414 
+L 247.5648 180.389793 
+Q 247.5648 177.373241 244.5408 177.373241 
+L 7.4592 177.373241 
+Q 4.4352 177.373241 4.4352 180.389793 
+L 4.4352 210.756414 
+Q 4.4352 213.772966 7.4592 213.772966 
+z
+" clip-path="url(#pc9c4a93893)" style="fill: #ffffff; stroke: #222222; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 7.4592 288.181241 
+L 244.5408 288.181241 
+Q 247.5648 288.181241 247.5648 285.16469 
+L 247.5648 232.67669 
+Q 247.5648 229.660138 244.5408 229.660138 
+L 7.4592 229.660138 
+Q 4.4352 229.660138 4.4352 232.67669 
+L 4.4352 285.16469 
+Q 4.4352 288.181241 7.4592 288.181241 
+z
+" clip-path="url(#pc9c4a93893)" style="fill: #ffffff; stroke-dasharray: 2.4,1.6; stroke-dashoffset: 0; stroke: #8a8a8a; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 6.4px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="7.056" y="11.482621" transform="rotate(-0 7.056 11.482621)">Q: Describe the last accessed date and location of the users</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 6.4px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="7.056" y="22.040552" transform="rotate(-0 7.056 22.040552)">     who received the outliers badge.</text>
+   </g>
+   <g id="text_3">
+    <text style="font-style: italic; font-size: 6.4px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="7.056" y="32.598483" transform="rotate(-0 7.056 32.598483)">Hint: Outliers is the name of the badge.</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 6.6px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start; fill: #222222" x="9.072" y="49.721838" transform="rotate(-0 9.072 49.721838)">1  GEN (cheap LLM)</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 6px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: end; fill: #8a8a8a" x="242.928" y="49.408432" transform="rotate(-0 242.928 49.408432)">3.3 s, cost 2.43</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start" x="9.072" y="60.564091" transform="rotate(-0 9.072 60.564091)">SELECT users.LastAccessDate, users.Location</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start" x="9.072" y="70.619263" transform="rotate(-0 9.072 70.619263)">FROM users JOIN badges ON badges.UserId = users.Id</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start" x="9.072" y="80.704185" transform="rotate(-0 9.072 80.704185)">WHERE badges.Name = 'Outliers'</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 20.16 84.463448 
+Q 20.16 85.971724 20.16 86.697376 
+" style="fill: none; stroke: #222222; stroke-width: 0.7; stroke-linecap: round"/>
+    <path d="M 21.36 84.297376 
+L 20.16 86.697376 
+L 18.96 84.297376 
+z
+" style="fill: #222222; stroke: #222222; stroke-width: 0.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 6.6px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start; fill: #1f4e9c" x="9.072" y="95.975631" transform="rotate(-0 9.072 95.975631)">2  DB evidence (priced, read-only)</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 6px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: end; fill: #8a8a8a" x="242.928" y="95.662225" transform="rotate(-0 242.928 95.662225)">54 ms, no LLM</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 6.2px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="9.072" y="107.873401" transform="rotate(-0 9.072 107.873401)">PARSE/BIND</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1e7b34" x="53.424" y="107.881118" transform="rotate(-0 53.424 107.881118)">✓</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 6.2px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="78.624" y="107.867104" transform="rotate(-0 78.624 107.867104)">EXEC: 0 rows</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #a3281e" x="120.96" y="107.881118" transform="rotate(-0 120.96 107.881118)">✗</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 6.2px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="9.072" y="119.933311" transform="rotate(-0 9.072 119.933311)">VALUE PROBE:</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start" x="59.472" y="119.416599" transform="rotate(-0 59.472 119.416599)">'Outliers'</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 6.2px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="100.8" y="119.939608" transform="rotate(-0 100.8 119.939608)">does not occur in</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start" x="154.224" y="119.386849" transform="rotate(-0 154.224 119.386849)">badges.Name</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 6.2px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="9.072" y="131.000297" transform="rotate(-0 9.072 131.000297)">nearest stored value:</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start" x="77.616" y="130.477289" transform="rotate(-0 77.616 130.477289)">'outliers'</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 20.16 131.722759 
+Q 20.16 136.247586 20.16 139.98979 
+" style="fill: none; stroke: #222222; stroke-width: 0.7; stroke-linecap: round"/>
+    <path d="M 21.36 137.58979 
+L 20.16 139.98979 
+L 18.96 137.58979 
+z
+" style="fill: #222222; stroke: #222222; stroke-width: 0.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_21">
+    <text style="font-weight: 700; font-size: 6.6px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start; fill: #a3281e" x="9.072" y="148.25879" transform="rotate(-0 9.072 148.25879)">3  PLAN</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 6.2px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="50.4" y="148.094091" transform="rotate(-0 50.4 148.094091)">flagged state: the cheapest action with value is</text>
+   </g>
+   <g id="text_23">
+    <text style="font-weight: 700; font-size: 6.2px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="50.4" y="158.549334" transform="rotate(-0 50.4 158.549334)">VALUE FIX (DB-only rewrite, no LLM call)</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 20.16 165.910345 
+Q 20.16 171.943448 20.16 177.193928 
+" style="fill: none; stroke: #222222; stroke-width: 0.7; stroke-linecap: round"/>
+    <path d="M 21.36 174.793928 
+L 20.16 177.193928 
+L 18.96 174.793928 
+z
+" style="fill: #222222; stroke: #222222; stroke-width: 0.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_24">
+    <text style="font-weight: 700; font-size: 6.6px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start; fill: #222222" x="9.072" y="185.462928" transform="rotate(-0 9.072 185.462928)">4  EXEC + ACCEPT</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 6px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: end; fill: #8a8a8a" x="242.928" y="185.15326" transform="rotate(-0 242.928 185.15326)">+11 ms</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start" x="9.072" y="197.344185" transform="rotate(-0 9.072 197.344185)">WHERE badges.Name = 'outliers'</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 5.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start" x="9.072" y="207.902116" transform="rotate(-0 9.072 207.902116)">1 row: ('2014-09-12 17:06', 'Leuven, Belgium')</text>
+   </g>
+   <g id="text_28">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1e7b34" x="227.808" y="198.891684" transform="rotate(-0 227.808 198.891684)">✓</text>
+   </g>
+   <g id="text_29">
+    <text style="font-weight: 700; font-size: 6.4px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="5.04" y="224.546276" transform="rotate(-0 5.04 224.546276)">PlanGate total: 1 LLM call, cost 2.50, 3.4 s, correct.</text>
+   </g>
+   <g id="text_30">
+    <text style="font-style: italic; font-size: 6.2px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="9.072" y="237.585125" transform="rotate(-0 9.072 237.585125)">LLM-only alternatives for the same query (all keep 'Outliers'):</text>
+   </g>
+   <g id="text_31">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #a3281e" x="15.12" y="250.664566" transform="rotate(-0 15.12 250.664566)">✗</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 6.1px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="30.24" y="250.084653" transform="rotate(-0 30.24 250.084653)">resample (cheap LLM)</text>
+   </g>
+   <g id="text_33">
+    <text style="font-size: 6.1px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start; fill: #8a8a8a" x="201.6" y="250.078458" transform="rotate(-0 201.6 250.078458)">cost +2.43</text>
+   </g>
+   <g id="text_34">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #a3281e" x="15.12" y="260.971118" transform="rotate(-0 15.12 260.971118)">✗</text>
+   </g>
+   <g id="text_35">
+    <text style="font-size: 6.1px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="30.24" y="260.391205" transform="rotate(-0 30.24 260.391205)">repair without DB evidence</text>
+   </g>
+   <g id="text_36">
+    <text style="font-size: 6.1px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start; fill: #8a8a8a" x="201.6" y="260.385009" transform="rotate(-0 201.6 260.385009)">cost +2.47</text>
+   </g>
+   <g id="text_37">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #a3281e" x="15.12" y="271.27767" transform="rotate(-0 15.12 271.27767)">✗</text>
+   </g>
+   <g id="text_38">
+    <text style="font-size: 6.1px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="30.24" y="270.697756" transform="rotate(-0 30.24 270.697756)">switch to deepseek-v4-pro</text>
+   </g>
+   <g id="text_39">
+    <text style="font-size: 6.1px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start; fill: #8a8a8a" x="201.6" y="270.691561" transform="rotate(-0 201.6 270.691561)">cost +7.87</text>
+   </g>
+   <g id="text_40">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #a3281e" x="15.12" y="281.584221" transform="rotate(-0 15.12 281.584221)">✗</text>
+   </g>
+   <g id="text_41">
+    <text style="font-size: 6.1px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start" x="30.24" y="281.004308" transform="rotate(-0 30.24 281.004308)">switch to qwen3.8-max</text>
+   </g>
+   <g id="text_42">
+    <text style="font-size: 6.1px; font-family: 'Times New Roman', 'Times', 'DejaVu Serif', serif; text-anchor: start; fill: #8a8a8a" x="201.6" y="280.998113" transform="rotate(-0 201.6 280.998113)">cost +8.08</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pc9c4a93893">
+   <rect x="0" y="0" width="252" height="291.6"/>
+  </clipPath>
+ </defs>
+</svg>

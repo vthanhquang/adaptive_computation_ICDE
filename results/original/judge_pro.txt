@@ -1,0 +1,21 @@
+﻿50/270
+100/270
+150/270
+200/270
+250/270
+
+== Experiment J: pairwise selection with judge=deepseek-v4-pro; 270 disagreeing pairs
+   pairs where exactly one is correct: 155 (only these can be judged right/wrong)
+  evidence  single-order acc  consistent  acc|consistent  acc (tie->prior)
+  sql                  0.452       76.1%           0.407             0.471
+  results              0.645       76.1%           0.602             0.639
+  diff                 0.626       82.6%           0.609             0.613
+
+  by pair type (single-order accuracy on decisive pairs):
+    c0 vs SWITCH_QWEN  n= 37  sql=0.351  results=0.486  diff=0.514
+    c0 vs SWITCH_PRO   n= 46  sql=0.457  results=0.587  diff=0.609
+    c0 vs RESAMPLE_1   n= 51  sql=0.529  results=0.745  diff=0.647
+    c0 vs REPAIR_DB    n= 21  sql=0.429  results=0.810  diff=0.810
+
+  differential probe DB time: median 21.6 ms, p95 3319.6 ms
+  diff applicable (same #columns, both executed): 70.7%

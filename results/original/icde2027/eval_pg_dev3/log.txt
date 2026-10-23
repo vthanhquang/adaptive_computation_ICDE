@@ -1,0 +1,38 @@
+== pg: train 275  cal 275  test 142
+  states: 20877 (76/question)
+  A fitted on 59415 candidate-states
+  P fitted on 12072 decisive pairs
+  V fitted on 20877 states (selection accuracy 0.589)
+  V calibrated: ECE oof 0.087 -> 0.000
+  Q fitted on 40695 state-actions
+  Q calibrated: ECE oof 0.090 -> 0.000
+  G decomposed: 591710 targets, decision changes in 0.017
+  planner fitted in 381s, checkpoint 4e4a004866dc5e2f
+  ran 212 configs on cal in 1424s
+  ran 212 configs on test in 690s
+
+== DB price 1 u/s   (cheap_only test acc 0.585)
+  1.25x no_db 0.585/4.35/9ms | fixed_bund 0.585/3.75/54ms | optimizer_ 0.585/3.72/19ms | rule_selec 0.585/3.75/53ms | adaptive 0.585/4.39/9ms
+        adaptive - no_db +0.0 [+0.0,+0.0], fixed_bund +0.0 [+0.0,+0.0], optimizer_ +0.0 [+0.0,+0.0], rule_selec +0.0 [+0.0,+0.0]
+  1.50x no_db 0.585/4.35/9ms | fixed_bund 0.599/4.35/57ms | optimizer_ 0.599/4.37/33ms | rule_selec 0.599/4.35/56ms | adaptive 0.592/4.25/17ms
+        adaptive - no_db +0.7 [+0.0,+2.1], fixed_bund -0.7 [-3.5,+1.4], optimizer_ -0.7 [-3.5,+1.4], rule_selec -0.7 [-3.5,+1.4]
+  2.00x no_db 0.585/4.35/9ms | fixed_bund 0.599/4.35/57ms | optimizer_ 0.599/4.37/33ms | rule_selec 0.599/4.35/56ms | adaptive 0.592/4.25/17ms
+        adaptive - no_db +0.7 [+0.0,+2.1], fixed_bund -0.7 [-3.5,+1.4], optimizer_ -0.7 [-3.5,+1.4], rule_selec -0.7 [-3.5,+1.4]
+  3.00x no_db 0.585/4.35/9ms | fixed_bund 0.606/7.92/78ms | optimizer_ 0.613/7.85/44ms | rule_selec 0.606/7.82/75ms | adaptive 0.599/7.45/19ms
+        adaptive - no_db +1.4 [+0.0,+3.5], fixed_bund -0.7 [-3.5,+1.4], optimizer_ -1.4 [-3.5,+0.0], rule_selec -0.7 [-3.5,+1.4]
+  4.00x no_db 0.599/14.18/17ms | fixed_bund 0.606/12.23/172ms | optimizer_ 0.606/12.98/44ms | rule_selec 0.606/12.13/166ms | adaptive 0.599/7.45/19ms
+        adaptive - no_db +0.0 [-3.5,+3.5], fixed_bund -0.7 [-4.9,+3.5], optimizer_ -0.7 [-4.9,+3.5], rule_selec -0.7 [-4.9,+3.5]
+
+== DB price 100 u/s   (cheap_only test acc 0.585)
+  1.25x no_db 0.585/5.24/9ms | optimizer_ 0.585/5.62/19ms | adaptive 0.585/5.24/9ms
+        adaptive - no_db +0.0 [+0.0,+0.0], optimizer_ +0.0 [+0.0,+0.0]
+  1.50x no_db 0.585/5.24/9ms | optimizer_ 0.585/5.62/19ms | adaptive 0.585/5.24/9ms
+        adaptive - no_db +0.0 [+0.0,+0.0], optimizer_ +0.0 [+0.0,+0.0]
+  2.00x no_db 0.585/5.24/9ms | optimizer_ 0.599/6.44/21ms | rule_selec 0.585/9.03/53ms | adaptive 0.585/5.24/9ms
+        adaptive - no_db +0.0 [+0.0,+0.0], optimizer_ -1.4 [-3.5,+0.0], rule_selec +0.0 [+0.0,+0.0]
+  3.00x no_db 0.585/5.24/9ms | fixed_bund 0.599/9.98/57ms | optimizer_ 0.613/10.48/28ms | rule_selec 0.599/9.92/56ms | adaptive 0.585/5.24/9ms
+        adaptive - no_db +0.0 [+0.0,+0.0], fixed_bund -1.4 [-3.5,+0.0], optimizer_ -2.8 [-5.6,-0.7], rule_selec -1.4 [-3.5,+0.0]
+  4.00x no_db 0.599/16.45/17ms | fixed_bund 0.599/9.98/57ms | optimizer_ 0.606/17.37/44ms | rule_selec 0.599/9.92/56ms | adaptive 0.599/15.92/19ms
+        adaptive - no_db +0.0 [+0.0,+0.0], fixed_bund +0.0 [-3.5,+3.5], optimizer_ -0.7 [-2.8,+1.4], rule_selec +0.0 [-3.5,+3.5]
+
+total 2497s

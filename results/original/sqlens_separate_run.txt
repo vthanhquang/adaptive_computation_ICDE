@@ -1,0 +1,10 @@
+﻿DB signal firing rates: {'suboptimal_join_tree': np.float64(0.047), 'incorrect_join_predicate': np.float64(0.027), 'empty_predicate': np.float64(0.037), 'abnormal_result': np.float64(0.08), 'incorrect_filter_in_subquery': np.float64(0.0), 'incorrect_group_by': np.float64(0.0), 'unnecessary_subquery': np.float64(0.007), 'value_ambiguity': np.float64(0.203), 'table_similarity': np.float64(0.137)}
+DB signal time: median 30 ms, p95 7924 ms
+
+[deepseek-v4-flash] detector AUROC=0.719 | flagged 13.0% | precision 0.667 | recall 0.234
+  per-signal AUROC vs gold error: {'suboptimal_join_tree': 0.506, 'incorrect_join_predicate': 0.522, 'empty_predicate': 0.542, 'abnormal_result': 0.601, 'unnecessary_subquery': 0.509, 'value_ambiguity': 0.532, 'table_similarity': 0.556, 'evidence_violation': 0.573, 'insufficient_evidence': 0.556, 'low_confidence_link': 0.553, 'column_ambiguity': 0.546, 'llm_self_check': 0.542}
+  SQLens final EX=0.637 (base flash 0.630) | cost 23.02 | p95 72.1s | changed 7.0%
+
+[deepseek-v4-pro] detector AUROC=0.724 | flagged 12.0% | precision 0.694 | recall 0.225
+  per-signal AUROC vs gold error: {'suboptimal_join_tree': 0.506, 'incorrect_join_predicate': 0.522, 'empty_predicate': 0.542, 'abnormal_result': 0.601, 'unnecessary_subquery': 0.509, 'value_ambiguity': 0.532, 'table_similarity': 0.556, 'evidence_violation': 0.555, 'insufficient_evidence': 0.584, 'low_confidence_link': 0.57, 'column_ambiguity': 0.579, 'llm_self_check': 0.563}
+  SQLens final EX=0.627 (base flash 0.630) | cost 37.83 | p95 79.0s | changed 5.3%

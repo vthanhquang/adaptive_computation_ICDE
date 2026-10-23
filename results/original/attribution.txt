@@ -1,0 +1,26 @@
+﻿
+===== sqlite  n=300  flash acc=0.630 cost=3.03
+  VALUE_FIX available on 3 questions; flagged c0: 23
+-- 2x: acc=0.670 cost=4.06 lam=0.05 tau=0.20
+   net gain over c0: 13 wins - 1 losses = 12 questions (+4.0 pts)
+   wins by (state, final source): {('flagged', 'repair'): 3, ('flagged', 'valuefix'): 3, ('unflagged', 'qwen'): 3, ('flagged', 'resample'): 2, ('flagged', 'qwen'): 1, ('unflagged', 'resample'): 1}
+   losses by (state, final source): {('unflagged', 'resample'): 1}
+   plans: {('unflagged', 'accept'): 261, ('flagged', 'local'): 15, ('flagged', 'escalated'): 7, ('unflagged', 'local'): 9, ('flagged', 'accept'): 1, ('unflagged', 'escalated'): 7}
+-- best: acc=0.680 cost=9.52 lam=0.1 tau=0.75
+   net gain over c0: 17 wins - 2 losses = 15 questions (+5.0 pts)
+   wins by (state, final source): {('unflagged', 'qwen'): 9, ('flagged', 'qwen'): 3, ('flagged', 'valuefix'): 3, ('flagged', 'resample'): 2}
+   losses by (state, final source): {('unflagged', 'qwen'): 2}
+   plans: {('unflagged', 'escalated'): 160, ('unflagged', 'accept'): 117, ('flagged', 'escalated'): 19, ('flagged', 'accept'): 1, ('flagged', 'local'): 3}
+
+===== pg  n=500  flash acc=0.592 cost=2.90
+  VALUE_FIX available on 6 questions; flagged c0: 40
+-- 2x: acc=0.648 cost=5.68 lam=0.02 tau=0.30
+   net gain over c0: 30 wins - 2 losses = 28 questions (+5.6 pts)
+   wins by (state, final source): {('unflagged', 'qwen'): 8, ('flagged', 'repair'): 6, ('flagged', 'valuefix'): 5, ('flagged', 'qwen'): 4, ('unflagged', 'resample'): 4, ('flagged', 'resample'): 2, ('unflagged', 'repair'): 1}
+   losses by (state, final source): {('unflagged', 'qwen'): 2}
+   plans: {('unflagged', 'local'): 100, ('unflagged', 'escalated'): 56, ('unflagged', 'accept'): 304, ('flagged', 'escalated'): 16, ('flagged', 'accept'): 2, ('flagged', 'local'): 22}
+-- best: acc=0.676 cost=11.09 lam=0.05 tau=0.85
+   net gain over c0: 52 wins - 10 losses = 42 questions (+8.4 pts)
+   wins by (state, final source): {('unflagged', 'qwen'): 34, ('flagged', 'qwen'): 8, ('flagged', 'valuefix'): 5, ('flagged', 'resample'): 2, ('flagged', 'repair'): 2, ('unflagged', 'resample'): 1}
+   losses by (state, final source): {('unflagged', 'qwen'): 10}
+   plans: {('unflagged', 'escalated'): 355, ('unflagged', 'accept'): 103, ('flagged', 'escalated'): 35, ('flagged', 'local'): 4, ('flagged', 'accept'): 1, ('unflagged', 'local'): 2}

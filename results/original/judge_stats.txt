@@ -1,0 +1,14 @@
+﻿judge=deepseek-v4-flash  n=155 decisive pairs (accuracy averaged over both presentation orders)
+  sql      0.465  95% CI [0.400, 0.529]
+  results  0.523  95% CI [0.458, 0.590]
+  diff     0.577  95% CI [0.510, 0.648]
+  results-sql: +0.058  CI [-0.013, +0.126]
+  diff-sql: +0.113  CI [+0.048, +0.181]
+  diff-results: +0.055  CI [+0.003, +0.106]
+judge=deepseek-v4-pro  n=155 decisive pairs (accuracy averaged over both presentation orders)
+  sql      0.429  95% CI [0.361, 0.497]
+  results  0.577  95% CI [0.506, 0.642]
+  diff     0.590  95% CI [0.523, 0.658]
+  results-sql: +0.148  CI [+0.087, +0.210]
+  diff-sql: +0.161  CI [+0.100, +0.223]
+  diff-results: +0.013  CI [-0.029, +0.052]

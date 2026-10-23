@@ -1,0 +1,25 @@
+﻿pilot pg_train: train 249  val 116
+  states: 18952 (76/question)
+  A fitted on 53977 candidate-states
+  P fitted on 9474 decisive pairs
+  V fitted on 18952 states (selection accuracy 0.602)
+  Q fitted on 36948 state-actions
+  G fitted on 537950 evidence-action targets
+fit 330s
+ran 322 configs 863s
+
+== price 1: cheap_only acc 0.586 cost 3.72
+  1.25x | no_db 0.586/3.7/10ms | fixed_bun 0.595/4.1/82ms | optimizer 0.595/4.0/47ms | rule_sele 0.595/4.1/80ms | adaptive 0.586/3.7/15ms
+  1.50x | no_db 0.595/4.8/11ms | fixed_bun 0.603/5.0/113ms | optimizer 0.612/5.0/63ms | rule_sele 0.603/5.0/112ms | adaptive 0.603/4.8/20ms
+  2.00x | no_db 0.595/4.8/11ms | fixed_bun 0.612/5.8/155ms | optimizer 0.612/5.0/63ms | rule_sele 0.612/5.9/155ms | adaptive 0.603/4.8/20ms
+  3.00x | no_db 0.612/8.7/11ms | fixed_bun 0.621/8.0/173ms | optimizer 0.621/7.9/93ms | rule_sele 0.621/8.0/172ms | adaptive 0.612/8.8/16ms
+  4.00x | no_db 0.612/8.7/11ms | fixed_bun 0.638/11.5/212ms | optimizer 0.647/13.6/126ms | rule_sele 0.638/11.7/217ms | adaptive 0.621/13.1/42ms
+  oracle 0.724
+
+== price 1000: cheap_only acc 0.586 cost 13.65
+  1.25x | no_db 0.595/15.4/11ms | adaptive 0.603/15.5/11ms
+  1.50x | no_db 0.612/19.4/11ms | adaptive 0.612/19.4/11ms
+  2.00x | no_db 0.612/19.4/11ms | adaptive 0.612/19.4/11ms
+  3.00x | no_db 0.621/33.2/18ms | optimizer 0.603/33.0/28ms | adaptive 0.612/19.4/11ms
+  4.00x | no_db 0.621/33.2/18ms | optimizer 0.612/42.2/33ms | adaptive 0.612/19.4/11ms
+  oracle 0.724

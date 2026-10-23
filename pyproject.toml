@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plangate"
+version = "1.0.0"
+description = "Cost-based inference planning over LLM and DBMS operators for Text-to-SQL"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "sqlglot>=25",
+    "psycopg[binary]>=3.1",
+    "openai>=1.30",
+    "networkx>=3.2",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+# EllieSQL router (released Qwen2.5-0.5B checkpoint; CPU is enough)
+elliesql = ["torch>=2.2", "transformers>=4.40", "safetensors>=0.4"]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["data: needs the BIRD benchmark under data/ (see docs/data.md)"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+extend-exclude = ["third_party"]
+
+[tool.ruff.lint]
+select = ["E9", "F"]
+ignore = ["E731"]

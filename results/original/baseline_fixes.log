@@ -1,0 +1,14 @@
+﻿API key OK
+running experiments/run_classic.py -> classic_run.txt
+API key OK
+running experiments/paper_baselines.py sqlite --fewshot -> paper_baselines_fewshot.txt
+API key OK
+running experiments/paper_baselines.py pg --fewshot -> paper_baselines_fewshot_pg.txt
+API check failed (prompt of 6000 words): Request timed out.
+python : API stopped working mid-run; rerun this script later (finished calls are cached).
+At line:1 char:302
++ ... tch {} } }; python experiments/run_baseline_fixes.py *> results/basel ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (API stopped wor...ls are cached).:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

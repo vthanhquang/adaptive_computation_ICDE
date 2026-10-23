@@ -1,0 +1,61 @@
+{
+ "eval_dir": "pg_x10",
+ "scale": 10,
+ "pricing": {
+  "VALUE_PROBE": {
+   "n": 1992,
+   "spearman": 0.5461460795672056,
+   "auroc_gt100ms": 0.8541455430920921,
+   "share_gt100ms": 0.03263052208835342,
+   "mae_log": 0.6310629747541909,
+   "mean_ms": 28.064672441626655,
+   "p95_ms": 41.57925992039954
+  },
+  "EXEC_BOUNDED": {
+   "n": 1992,
+   "spearman": 0.9498294647817263,
+   "auroc_gt100ms": 0.9822675076448163,
+   "share_gt100ms": 0.31877510040160645,
+   "mae_log": 0.47294971359601284,
+   "mean_ms": 323.4066370979604,
+   "p95_ms": 1297.2079650033252
+  }
+ },
+ "choices": {
+  "no_db": {
+   "vp_c0|literals": 0.0,
+   "vp_c0|no_literals": 0.0,
+   "ex_c0": 0.0,
+   "ex_new|>=2 cands": 0.0,
+   "probes_per_q": 0.0
+  },
+  "fixed_bundle": {
+   "vp_c0|literals": 1.0,
+   "vp_c0|no_literals": 1.0,
+   "ex_c0": 1.0,
+   "ex_new|>=2 cands": 1.0,
+   "probes_per_q": 2.108433734939759
+  },
+  "optimizer_gated": {
+   "vp_c0|literals": 1.0,
+   "vp_c0|no_literals": 1.0,
+   "ex_c0": 0.9257028112449799,
+   "ex_new|>=2 cands": 0.95,
+   "probes_per_q": 2.0240963855421685
+  },
+  "rule_selective": {
+   "vp_c0|literals": 1.0,
+   "vp_c0|no_literals": 0.01,
+   "ex_c0": 0.9919678714859438,
+   "ex_new|>=2 cands": 1.0,
+   "probes_per_q": 2.1927710843373496
+  },
+  "adaptive": {
+   "vp_c0|literals": 0.6959798994974874,
+   "vp_c0|no_literals": 0.8,
+   "ex_c0": 0.6726907630522089,
+   "ex_new|>=2 cands": 0.59375,
+   "probes_per_q": 1.6385542168674698
+  }
+ }
+}

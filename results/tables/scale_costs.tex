@@ -1,0 +1,12 @@
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{1$\times$ (1\,GB)} & \multicolumn{2}{c}{10$\times$ (10\,GB)} & \multicolumn{2}{c}{100$\times$ (101\,GB)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Operator & mean & p95 & mean & p95 & mean & p95 \\
+\midrule
+\op{explain} & 0.6 & 1 & 0.7 & 1 & 0.7 & 1 \\
+\op{parse/bind} & 1.5 & 4 & 4.3 & 24 & 12.3 & 55 \\
+\op{value probe} & 4.2 & 6 & 28.0 & 41 & 125.6 & 1465 \\
+\op{bounded exec} & 15.7 & 76 & 322.1 & 1294 & 1518.7 & 5082 \\
+\bottomrule
+\end{tabular}

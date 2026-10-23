@@ -1,0 +1,60 @@
+﻿== pg: train 275  cal 142  test 142
+  states: 20877 (76/question)
+  A fitted on 59415 candidate-states
+  P fitted on 12072 decisive pairs
+  V fitted on 20877 states (selection accuracy 0.596)
+  Q fitted on 40695 state-actions
+  G fitted on 591710 evidence-action targets
+  planner fitted in 370s, checkpoint 91edcb77783f72ea
+  ran 212 configs on cal in 733s
+  ran 212 configs on test in 834s
+
+== DB price 1 u/s   (cheap_only test acc 0.585)
+  1.25x no_db 0.592/3.99/9ms | fixed_bund 0.592/4.07/59ms | optimizer_ 0.592/4.05/22ms | rule_selec 0.592/4.07/59ms | adaptive 0.592/3.98/15ms
+        adaptive - no_db +0.0 [+0.0,+0.0], fixed_bund +0.0 [+0.0,+0.0], optimizer_ +0.0 [+0.0,+0.0], rule_selec +0.0 [+0.0,+0.0]
+  1.50x no_db 0.620/5.40/12ms | fixed_bund 0.599/5.37/80ms | optimizer_ 0.606/5.16/29ms | rule_selec 0.606/5.41/79ms | adaptive 0.613/5.09/22ms
+        adaptive - no_db -0.7 [-3.5,+1.4], fixed_bund +1.4 [+0.0,+3.5], optimizer_ +0.7 [+0.0,+2.1], rule_selec +0.7 [-1.4,+3.5]
+  2.00x no_db 0.627/6.89/14ms | fixed_bund 0.613/6.99/112ms | optimizer_ 0.627/6.71/33ms | rule_selec 0.613/6.99/111ms | adaptive 0.620/6.40/27ms
+        adaptive - no_db -0.7 [-3.5,+1.4], fixed_bund +0.7 [-1.4,+3.5], optimizer_ -0.7 [-2.1,+0.0], rule_selec +0.7 [-1.4,+3.5]
+  3.00x no_db 0.627/6.89/14ms | fixed_bund 0.620/9.79/130ms | optimizer_ 0.634/9.30/39ms | rule_selec 0.620/9.84/130ms | adaptive 0.627/8.96/38ms
+        adaptive - no_db +0.0 [-2.1,+2.1], fixed_bund +0.7 [-1.4,+3.5], optimizer_ -0.7 [-2.1,+0.0], rule_selec +0.7 [-1.4,+3.5]
+  4.00x no_db 0.634/12.40/15ms | fixed_bund 0.620/9.79/130ms | optimizer_ 0.641/11.88/64ms | rule_selec 0.620/9.84/130ms | adaptive 0.627/8.96/38ms
+        adaptive - no_db -0.7 [-3.5,+2.1], fixed_bund +0.7 [-1.4,+3.5], optimizer_ -1.4 [-3.5,+0.0], rule_selec +0.7 [-1.4,+3.5]
+
+== DB price 30 u/s   (cheap_only test acc 0.585)
+  1.25x no_db 0.592/4.26/9ms | optimizer_ 0.592/4.68/22ms | adaptive 0.592/4.34/12ms
+        adaptive - no_db +0.0 [+0.0,+0.0], optimizer_ +0.0 [+0.0,+0.0]
+  1.50x no_db 0.620/5.73/12ms | fixed_bund 0.592/5.80/59ms | optimizer_ 0.592/4.68/22ms | rule_selec 0.592/5.78/59ms | adaptive 0.613/5.77/15ms
+        adaptive - no_db -0.7 [-2.1,+0.0], fixed_bund +2.1 [+0.0,+4.9], optimizer_ +2.1 [+0.0,+4.9], rule_selec +2.1 [+0.0,+4.9]
+  2.00x no_db 0.627/7.29/14ms | fixed_bund 0.599/7.69/80ms | optimizer_ 0.627/7.67/33ms | rule_selec 0.606/7.71/79ms | adaptive 0.620/7.03/19ms
+        adaptive - no_db -0.7 [-3.5,+1.4], fixed_bund +2.1 [+0.0,+4.9], optimizer_ -0.7 [-2.1,+0.0], rule_selec +1.4 [-1.4,+4.2]
+  3.00x no_db 0.627/7.29/14ms | fixed_bund 0.613/9.56/73ms | optimizer_ 0.634/10.42/39ms | rule_selec 0.613/9.62/73ms | adaptive 0.627/9.85/26ms
+        adaptive - no_db +0.0 [-2.1,+2.1], fixed_bund +1.4 [-1.4,+4.2], optimizer_ -0.7 [-2.1,+0.0], rule_selec +1.4 [-1.4,+4.2]
+  4.00x no_db 0.634/12.83/15ms | fixed_bund 0.620/13.55/130ms | optimizer_ 0.641/13.40/41ms | rule_selec 0.620/13.60/130ms | adaptive 0.634/12.71/38ms
+        adaptive - no_db +0.0 [-2.8,+2.8], fixed_bund +1.4 [-1.4,+4.2], optimizer_ -0.7 [-2.1,+0.0], rule_selec +1.4 [-1.4,+4.2]
+
+== DB price 100 u/s   (cheap_only test acc 0.585)
+  1.25x no_db 0.592/4.92/9ms | optimizer_ 0.585/5.62/19ms | adaptive 0.592/5.16/12ms
+        adaptive - no_db +0.0 [+0.0,+0.0], optimizer_ +0.7 [+0.0,+2.1]
+  1.50x no_db 0.620/6.54/12ms | optimizer_ 0.592/6.20/22ms | adaptive 0.613/6.68/15ms
+        adaptive - no_db -0.7 [-3.5,+1.4], optimizer_ +2.1 [+0.0,+4.9]
+  2.00x no_db 0.627/8.27/14ms | fixed_bund 0.585/9.10/54ms | optimizer_ 0.606/8.03/29ms | rule_selec 0.585/9.03/53ms | adaptive 0.620/8.44/17ms
+        adaptive - no_db -0.7 [-2.1,+0.0], fixed_bund +3.5 [+0.7,+7.0], optimizer_ +1.4 [+0.0,+3.5], rule_selec +3.5 [+0.7,+7.0]
+  3.00x no_db 0.627/8.27/14ms | fixed_bund 0.599/13.29/80ms | optimizer_ 0.634/13.13/39ms | rule_selec 0.606/13.28/79ms | adaptive 0.627/11.47/22ms
+        adaptive - no_db +0.0 [+0.0,+0.0], fixed_bund +2.8 [+0.7,+5.6], optimizer_ -0.7 [-2.8,+1.4], rule_selec +2.1 [-0.7,+5.6]
+  4.00x no_db 0.634/13.85/15ms | fixed_bund 0.613/14.64/73ms | optimizer_ 0.641/16.24/41ms | rule_selec 0.613/14.70/73ms | adaptive 0.634/14.87/26ms
+        adaptive - no_db +0.0 [-2.1,+2.1], fixed_bund +2.1 [-0.7,+5.6], optimizer_ -0.7 [-2.8,+1.4], rule_selec +2.1 [-0.7,+5.6]
+
+== DB price 300 u/s   (cheap_only test acc 0.585)
+  1.25x no_db 0.592/6.80/9ms | adaptive 0.592/6.81/9ms
+        adaptive - no_db +0.0 [+0.0,+0.0]
+  1.50x no_db 0.620/8.86/12ms | optimizer_ 0.585/9.46/19ms | adaptive 0.613/8.83/12ms
+        adaptive - no_db -0.7 [-2.1,+0.0], optimizer_ +2.8 [+0.7,+5.6]
+  2.00x no_db 0.627/11.04/14ms | optimizer_ 0.592/10.54/22ms | adaptive 0.620/11.90/12ms
+        adaptive - no_db -0.7 [-3.5,+1.4], optimizer_ +2.8 [+0.0,+6.3]
+  3.00x no_db 0.634/16.76/15ms | optimizer_ 0.627/16.58/33ms | adaptive 0.634/18.40/20ms
+        adaptive - no_db +0.0 [+0.0,+0.0], optimizer_ +0.7 [-2.8,+4.2]
+  4.00x no_db 0.634/16.76/15ms | fixed_bund 0.592/21.85/59ms | optimizer_ 0.641/24.34/41ms | rule_selec 0.592/21.67/59ms | adaptive 0.634/18.40/20ms
+        adaptive - no_db +0.0 [+0.0,+0.0], fixed_bund +4.2 [+0.7,+8.5], optimizer_ -0.7 [-3.5,+2.1], rule_selec +4.2 [+0.7,+8.5]
+
+total 1940s

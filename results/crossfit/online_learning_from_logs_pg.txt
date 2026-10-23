@@ -1,0 +1,59 @@
+== Online learning from logs (pg, n=500, block=30, seeds=5, point lam,tau=(0.05, 0.5))
+  seed 0 static                                 logged=  0 audited=  0  all 0.612/ 3.69  late 0.596/ 3.63  accept=0.92
+  seed 0 gold-full (Q-V)                        logged=500 audited=500  all 0.634/ 6.09  late 0.627/ 6.10  accept=0.64
+  seed 0 gold-full (ADV)                        logged=500 audited=500  all 0.630/ 5.96  late 0.620/ 5.87  accept=0.67
+  seed 0 logs, gold 100% (Q-V)                  logged=500 audited=500  all 0.624/ 7.31  late 0.608/ 8.05  accept=0.41
+  seed 0 logs, gold 100% (ADV)                  logged=500 audited=500  all 0.620/ 7.32  late 0.596/ 7.42  accept=0.57
+  seed 0 logs, self-db (ADV)                    logged= 88 audited=  0  all 0.606/ 4.99  late 0.596/ 4.60  accept=0.86
+  seed 0 logs, self-db + audit 10% unc (ADV)    logged=121 audited= 50  all 0.616/ 5.35  late 0.614/ 5.82  accept=0.70
+  seed 0 logs, self-db + audit 25% unc (ADV)    logged=197 audited=133  all 0.620/ 6.04  late 0.614/ 5.93  accept=0.65
+  seed 0 logs, self-db + audit 25% rand (ADV)   logged=214 audited=133  all 0.622/ 7.08  late 0.584/ 7.62  accept=0.55
+  seed 1 static                                 logged=  0 audited=  0  all 0.612/ 3.69  late 0.657/ 3.44  accept=0.94
+  seed 1 gold-full (Q-V)                        logged=500 audited=500  all 0.638/ 5.73  late 0.717/ 5.70  accept=0.71
+  seed 1 gold-full (ADV)                        logged=500 audited=500  all 0.634/ 5.68  late 0.735/ 5.68  accept=0.73
+  seed 1 logs, gold 100% (Q-V)                  logged=500 audited=500  all 0.628/ 7.58  late 0.723/ 7.71  accept=0.45
+  seed 1 logs, gold 100% (ADV)                  logged=500 audited=500  all 0.636/ 7.03  late 0.717/ 7.24  accept=0.51
+  seed 1 logs, self-db (ADV)                    logged= 90 audited=  0  all 0.614/ 5.12  late 0.651/ 3.87  accept=0.93
+  seed 1 logs, self-db + audit 10% unc (ADV)    logged=130 audited= 50  all 0.620/ 5.68  late 0.681/ 5.37  accept=0.74
+  seed 1 logs, self-db + audit 25% unc (ADV)    logged=206 audited=133  all 0.628/ 6.13  late 0.699/ 5.34  accept=0.71
+  seed 1 logs, self-db + audit 25% rand (ADV)   logged=231 audited=133  all 0.628/ 6.65  late 0.681/ 5.87  accept=0.75
+  seed 2 static                                 logged=  0 audited=  0  all 0.612/ 3.69  late 0.590/ 3.64  accept=0.92
+  seed 2 gold-full (Q-V)                        logged=500 audited=500  all 0.630/ 6.18  late 0.620/ 5.86  accept=0.70
+  seed 2 gold-full (ADV)                        logged=500 audited=500  all 0.632/ 6.06  late 0.620/ 5.76  accept=0.72
+  seed 2 logs, gold 100% (Q-V)                  logged=500 audited=500  all 0.630/ 7.45  late 0.633/ 7.26  accept=0.51
+  seed 2 logs, gold 100% (ADV)                  logged=500 audited=500  all 0.624/ 6.95  late 0.602/ 6.98  accept=0.64
+  seed 2 logs, self-db (ADV)                    logged= 91 audited=  0  all 0.616/ 4.96  late 0.596/ 4.57  accept=0.85
+  seed 2 logs, self-db + audit 10% unc (ADV)    logged=141 audited= 50  all 0.618/ 5.97  late 0.608/ 5.12  accept=0.74
+  seed 2 logs, self-db + audit 25% unc (ADV)    logged=215 audited=133  all 0.624/ 6.51  late 0.627/ 6.50  accept=0.61
+  seed 2 logs, self-db + audit 25% rand (ADV)   logged=193 audited=133  all 0.618/ 5.71  late 0.602/ 5.94  accept=0.66
+  seed 3 static                                 logged=  0 audited=  0  all 0.612/ 3.69  late 0.602/ 3.53  accept=0.93
+  seed 3 gold-full (Q-V)                        logged=500 audited=500  all 0.630/ 5.94  late 0.620/ 5.70  accept=0.71
+  seed 3 gold-full (ADV)                        logged=500 audited=500  all 0.634/ 5.89  late 0.633/ 5.70  accept=0.73
+  seed 3 logs, gold 100% (Q-V)                  logged=500 audited=500  all 0.646/ 7.56  late 0.651/ 7.86  accept=0.38
+  seed 3 logs, gold 100% (ADV)                  logged=500 audited=500  all 0.630/ 7.29  late 0.627/ 7.36  accept=0.62
+  seed 3 logs, self-db (ADV)                    logged= 84 audited=  0  all 0.614/ 4.96  late 0.608/ 4.05  accept=0.92
+  seed 3 logs, self-db + audit 10% unc (ADV)    logged=125 audited= 50  all 0.618/ 5.24  late 0.614/ 4.94  accept=0.72
+  seed 3 logs, self-db + audit 25% unc (ADV)    logged=197 audited=133  all 0.622/ 6.51  late 0.633/ 6.44  accept=0.65
+  seed 3 logs, self-db + audit 25% rand (ADV)   logged=192 audited=133  all 0.622/ 5.67  late 0.596/ 6.32  accept=0.60
+  seed 4 static                                 logged=  0 audited=  0  all 0.612/ 3.69  late 0.669/ 3.50  accept=0.93
+  seed 4 gold-full (Q-V)                        logged=500 audited=500  all 0.628/ 6.12  late 0.675/ 5.97  accept=0.68
+  seed 4 gold-full (ADV)                        logged=500 audited=500  all 0.634/ 5.91  late 0.675/ 5.70  accept=0.72
+  seed 4 logs, gold 100% (Q-V)                  logged=500 audited=500  all 0.622/ 7.57  late 0.663/ 7.17  accept=0.48
+  seed 4 logs, gold 100% (ADV)                  logged=500 audited=500  all 0.618/ 7.49  late 0.657/ 6.70  accept=0.63
+  seed 4 logs, self-db (ADV)                    logged= 93 audited=  0  all 0.604/ 4.92  late 0.669/ 3.97  accept=0.92
+  seed 4 logs, self-db + audit 10% unc (ADV)    logged=131 audited= 50  all 0.610/ 5.32  late 0.675/ 5.28  accept=0.74
+  seed 4 logs, self-db + audit 25% unc (ADV)    logged=213 audited=133  all 0.620/ 6.20  late 0.675/ 5.44  accept=0.68
+  seed 4 logs, self-db + audit 25% rand (ADV)   logged=218 audited=133  all 0.614/ 6.15  late 0.669/ 5.76  accept=0.71
+
+== Mean over seeds: last third of the stream (after learning)
+  regime                                     EX   cost  ACCEPT labels/q  vs static (paired, 95% CI)
+  static                                  0.623   3.55    0.93     0.00
+  gold-full (Q-V)                         0.652   5.87    0.69     1.00   +2.9 [ +1.3,  +4.5]
+  gold-full (ADV)                         0.657   5.74    0.71     1.00   +3.4 [ +1.8,  +4.9]
+  logs, gold 100% (Q-V)                   0.655   7.61    0.44     1.00   +3.3 [ +1.3,  +5.3]
+  logs, gold 100% (ADV)                   0.640   7.14    0.59     1.00   +1.7 [ -0.2,  +3.6]
+  logs, self-db (ADV)                     0.624   4.21    0.89     0.00   +0.1 [ -0.2,  +0.6]
+  logs, self-db + audit 10% unc (ADV)     0.639   5.31    0.73     0.10   +1.6 [ +0.4,  +2.9]
+  logs, self-db + audit 25% unc (ADV)     0.649   5.93    0.66     0.27   +2.7 [ +1.1,  +4.2]
+  logs, self-db + audit 25% rand (ADV)    0.627   6.30    0.65     0.27   +0.4 [ -1.2,  +1.9]
+saved results/crossfit/online_learning_from_logs_pg.png

@@ -1,0 +1,39 @@
+{
+ "git_commit": "551176be71be36758693a401026643aaef8cf4a8",
+ "engine": "pg",
+ "planner_checkpoint": "7a1eb45337539d66",
+ "splits": {
+  "pg_train": "533b38946b44acb03a1dc635d584dce8e710264a2b32da5a956806579996c6f7",
+  "pg_train:oof": "533b38946b44acb03a1dc635d584dce8e710264a2b32da5a956806579996c6f7",
+  "pg_test": "0ab5d07e9200cb2e668a243084c1c83e9f54f4cb5ee6d0f5ff13b1b6d4cb4bd3"
+ },
+ "prices": [
+  1.0
+ ],
+ "lambdas": [
+  0.0,
+  0.005,
+  0.01,
+  0.02,
+  0.03,
+  0.05,
+  0.08,
+  0.12,
+  0.2,
+  0.35
+ ],
+ "n_masks": 4,
+ "budgets": [
+  1.25,
+  1.5,
+  2.0,
+  3.0,
+  4.0
+ ],
+ "models": {
+  "cheap": "deepseek-v4-flash",
+  "mid": "deepseek-v4-pro",
+  "strong": "qwen3.8-max"
+ },
+ "time_s": 12268.22649550438
+}

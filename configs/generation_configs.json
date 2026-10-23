@@ -1,0 +1,8 @@
+{
+  "flash_direct":    {"model": "deepseek-v4-flash", "profile": "direct",    "schema": "samples"},
+  "glm_direct":      {"model": "glm-5.3-flash",     "profile": "direct",    "schema": "samples"},
+  "pro_direct":      {"model": "deepseek-v4-pro",   "profile": "direct",    "schema": "samples"},
+  "pro_decompose":   {"model": "deepseek-v4-pro",   "profile": "decompose", "schema": "samples"},
+  "qwen_max_direct": {"model": "qwen3.8-max",       "profile": "direct",    "schema": "samples"},
+  "kimi_decompose":  {"model": "kimi-k3",           "profile": "decompose", "schema": "samples"}
+}

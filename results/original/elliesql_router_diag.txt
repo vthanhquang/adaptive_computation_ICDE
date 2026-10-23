@@ -1,0 +1,7 @@
+﻿oracle (waterfall) label distribution: {'G_B': 178, 'none': 90, 'G_M': 24, 'G_A': 8}
+router distribution: {'G_A': 107, 'G_M': 34, 'G_B': 159}
+router agrees with oracle label (solvable questions): 0.557
+  routed to G_B: n=159  acc of chosen pipeline=0.692  acc if G_A instead=0.698
+  routed to G_M: n= 34  acc of chosen pipeline=0.529  acc if G_A instead=0.559
+  routed to G_A: n=107  acc of chosen pipeline=0.579  acc if G_A instead=0.579
+AUROC of router P(not basic) for 'basic pipeline fails': 0.613
